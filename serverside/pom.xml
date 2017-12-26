@@ -7,6 +7,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>serverside Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<springframework.version>4.3.12.RELEASE</springframework.version>
+		<springsecurity.version>4.2.3.RELEASE</springsecurity.version>
+		<jackson.library>2.9.2</jackson.library>
+	</properties>
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
