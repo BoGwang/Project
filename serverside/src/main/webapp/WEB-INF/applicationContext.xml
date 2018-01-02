@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:component-scan base-package="com.koitt" />
+	<!-- http element는 선언 된 순서대로 추가되므로 가장 구체적인 패턴을 먼저 선언 -->
+	<!-- Basic Authentication (use-expressions 사용하지 않는 경우)-->
+	<http pattern="/rest/**" realm="MY_TEST_REALM" 
+		create-session="stateless" use-expressions="false">
+		<http-basic 
+			entry-point-ref="customBasicAuthenticationEntryPoint"/>
+		<intercept-url pattern="/rest/user/login"  
+			 method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/rest/user"  
+			 method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/rest/board/attachment/**"
+			 method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/rest/**"
+			access="ROLE_ADMIN, ROLE_USER"/>
+		<intercept-url pattern="/rest/**"   
+			method="OPTIONS" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<csrf disabled="true"/>
+		<cors ref="corsFilter"/>
+	</http>
+	
+	<!-- Basic Authentication (use-expressions 사용하는 경우) -->
+	<!-- <http pattern="/rest/**" realm="MY_TEST_REALM"
+		create-session="stateless" use-expressions="true">
+		<http-basic
+			entry-point-ref="customBasicAuthenticationEntryPoint"/>
+		<intercept-url pattern="/rest/user/login"
+			method="POST" access="permitAll" />
+		<intercept-url pattern="/rest/**"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/rest/**"
+			method="OPTIONS" access="permitAll"/>
+		<csrf disabled="true"/>
+		<cors ref="corsFilter"/>
+	</http> -->
+
+	<!-- Spring Security Login -->
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/board/**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')"/>
+
+		<form-login login-page="/login"
+					login-processing-url="/login-processing"
+					authentication-failure-url="/login?action=error"
+					username-parameter="email"
+					password-parameter="password" />
+		<access-denied-handler error-page="/access-denied" />
+		<csrf />
+	</http>
+
+	<beans:bean id="bcryptEncoder" 
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<authentication-manager>
+		<authentication-provider user-service-ref="customUserDetailsService">
+			<password-encoder ref="bcryptEncoder" />
+		</authentication-provider>
+	</authentication-manager>
+	
+	<!-- JDBC -->
+	<context:property-placeholder location="/WEB-INF/jdbc.properties"/>
+	
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<beans:property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<beans:property name="url" value="${jdbc.url}"/>
+		<beans:property name="username" value="${jdbc.username}"/>
+		<beans:property name="password" value="${jdbc.password}"/>
+		<beans:property name="maxTotal" value="${jdbc.maxActive}"/>
+	</beans:bean>
+	
+	<!-- myBatis -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="configLocation" value="/WEB-INF/config/mybatis.xml"/>
+		<beans:property name="mapperLocations">
+			<beans:array>
+				<beans:value>/WEB-INF/config/mapper-*.xml</beans:value>
+			</beans:array>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
+	</beans:bean>
+	
+	<!-- Transaction 적용 -->
+	<beans:bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans:beans>

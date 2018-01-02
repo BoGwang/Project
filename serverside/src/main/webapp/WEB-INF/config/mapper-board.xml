@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koitt.board.dao.BoardDaoImpl">
+
+	<insert id="insert" parameterType="Board">
+		<selectKey keyProperty="no" resultType="Integer" order="BEFORE">
+			SELECT board_seq.NEXTVAL no FROM DUAL
+		</selectKey>
+		INSERT INTO board (no, title, content, id, regdate, attachment)
+		VALUES (#{no}, #{title}, #{content}, #{id}, SYSDATE, #{attachment})
+	</insert>
+	
+	<resultMap type="Board" id="boardResultMap">
+		<id property="no" column="no" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="id" column="id" />
+		<result property="regdate" column="regdate" />
+		<result property="attachment" column="attachment" />
+		<result property="userInfo.email" column="email" />
+		<result property="userInfo.name" column="name" />
+		<result property="userInfo.avatar" column="avatar" />
+	</resultMap>
+	
+	<select id="select" parameterType="String" resultMap="boardResultMap">
+		SELECT b.no, b.title, b.content, b.id, b.regdate, b.attachment, u.email, u.name, u.avatar
+		FROM user_info u, board b
+		WHERE b.id = u.id AND no = #{no}
+	</select>
+	
+	<select id="selectAll" resultMap="boardResultMap">
+		SELECT b.no, b.title, b.content, b.id, b.regdate, b.attachment, u.email, u.name, u.avatar
+		FROM user_info u, board b
+		WHERE b.id = u.id ORDER BY b.no DESC
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) cnt FROM board WHERE 1=1
+	</select>
+	
+	<update id="update" parameterType="Board">
+		UPDATE board 
+		SET title = #{title}, content = #{content}, regdate = SYSDATE, attachment = #{attachment}
+		WHERE no = #{no}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM board WHERE no = #{no}
+	</delete>
+	
+</mapper>
