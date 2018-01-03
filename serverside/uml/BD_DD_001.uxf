@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>35</x>
+      <y>0</y>
+      <w>322</w>
+      <h>455</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Server</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>63</x>
+      <y>77</y>
+      <w>266</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Apache Tomcat 8.5.23</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>70</x>
+      <y>112</y>
+      <w>231</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+UML01Board.war</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>77</x>
+      <y>140</y>
+      <w>217</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Spring Framework 3.2.18.RELEASE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>77</x>
+      <y>175</y>
+      <w>217</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+BoardWebController</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>77</x>
+      <y>210</y>
+      <w>217</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+UserWebController</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>385</x>
+      <y>35</y>
+      <w>161</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Client (Desktop PC)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>392</x>
+      <y>77</y>
+      <w>140</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Windows 7</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>399</x>
+      <y>119</y>
+      <w>119</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+Chrome, IE 11 (Browser)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>133</y>
+      <w>49</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>HTTP</panel_attributes>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>63</x>
+      <y>294</y>
+      <w>266</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Oracle Database 11g</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>77</x>
+      <y>336</y>
+      <w>112</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+:user_info_type
+Schema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>196</x>
+      <y>336</y>
+      <w>105</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+:user_type
+Schema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>77</x>
+      <y>385</y>
+      <w>112</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+:board
+Schema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>196</x>
+      <y>385</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+:user_info
+Schema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>49</x>
+      <y>42</y>
+      <w>294</w>
+      <h>406</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Windows 7</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
