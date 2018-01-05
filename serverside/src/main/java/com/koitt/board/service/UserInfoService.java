@@ -18,6 +18,9 @@ public interface UserInfoService {
 	
 	//영화 번호를 이용하여 영화 작성자의 비밀번호와 입력한 비밀번호 비교
 	public boolean isMovieMatched(Integer mno, String rawPassword) throws CommonException;
+	
+	//영화 번호를 이용하여 영화 작성자의 비밀번호와 입력한 비밀번호 비교
+	public boolean isReservationMatched(Integer rno, String rawPassword) throws CommonException;
 
 	// 현재 사용자의 id값을 이용하여 비밀번호를 불러온 다음, 입력한 비밀번호와 비교
 	public boolean isPasswordMatched(Integer id, String oldPassword) throws CommonException;

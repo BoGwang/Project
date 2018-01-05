@@ -12,10 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.koitt.board.dao.BoardDao;
 import com.koitt.board.dao.MovieDao;
+import com.koitt.board.dao.ReservationDao;
 import com.koitt.board.dao.UserInfoDao;
 import com.koitt.board.model.Board;
 import com.koitt.board.model.CommonException;
 import com.koitt.board.model.Movie;
+import com.koitt.board.model.Reservation;
 import com.koitt.board.model.UserInfo;
 import com.koitt.board.model.UserType;
 import com.koitt.board.model.UserTypeId;
@@ -33,6 +35,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	@Autowired
 	private MovieDao movieDao;
+	
+	@Autowired
+	private ReservationDao reservationDao;
 
 	@Autowired
 	private PasswordEncoder encoder;
@@ -136,6 +141,24 @@ public class UserInfoServiceImpl implements UserInfoService {
 		// 해당 사용자의 비밀번호와 입력한 비밀번호 비교한 결과 리턴
 		return encoder.matches(rawPassword, userInfo.getPassword());
 	}
+	
+	//예매 
+		@Override
+		public boolean isReservationMatched(Integer rno, String rawPassword) throws CommonException {
+			/*
+			 *  영화 번호를 이용하여 영화를 가져온 뒤
+			 *  영화의 작성자 email값을 획득한 후,
+			 *  획득한 email값으로 사용자 정보를 가져와
+			 *  해당 사용자의 비밀번호를 가져온다.
+			 */
+			Reservation reservation = reservationDao.select(rno.toString());
+			UserInfo userInfo = userInfoDao.select(reservation.getRno());
+			
+			// 해당 사용자의 비밀번호와 입력한 비밀번호 비교한 결과 리턴
+			return encoder.matches(rawPassword, userInfo.getPassword());
+		}
+	
+	
 
 	@Override
 	public UserInfo detail(String email) throws CommonException {
