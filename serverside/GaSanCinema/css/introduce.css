@@ -1,0 +1,382 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+h1{
+        font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+    display: inline-block;
+}
+p{
+        font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+}
+span{
+        font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+}
+section{
+    padding: 50px 0 50px 0;
+}
+.header{
+    background: #ffffff;
+    width: 100%;
+    height: 103px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+.header .main-header{
+    overflow: hidden;
+}
+.header .sub-header{
+    background: #f2f2f2;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 3px solid #503396;
+    padding: 15px 0;
+}
+.header .sub-header ul{
+    overflow: hidden;
+}
+.header .sub-header ul li.title{
+    float: left;
+    padding: 0 100px 0 0;
+}
+.header .sub-header ul li.title a h3{
+    color: #000000;
+    font-size: 18px;
+}
+.header .sub-header ul li#actvie a h3{
+    color: #503396;
+}
+.header .sub-header ul li.title:hover a h3{
+    color: #503396;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.header .main-header nav.gnb{
+    float: right;
+    width: 100%;
+}
+.header .main-header nav.gnb ul li.nav-item{
+    float: left;
+    padding: 12px 35px;
+    border-left: 1px solid #e5e5e5;
+    width: 33.33%;
+    text-align: center;
+}
+.header .main-header nav.gnb ul li.nav-item:hover a.nav-link{
+    color: #198591;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.header .main-header nav.gnb ul li.nav-item:last-child{
+    border-right: 1px solid #e5e5e5;
+}
+.header .main-header nav.gnb ul li.nav-item a.nav-link{
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+        font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+}
+.header .main-header nav.gnb ul li#actvie a .nav-link{
+    color: #198591;
+}
+section.movie-intoduce{
+    overflow: hidden;
+    padding-top: 150px;
+}
+section.movie-intoduce .img-area{
+    float: left;
+    display: inline-block;
+}
+section.movie-intoduce .img-area img{
+    width: 380px;
+    height: 592px;
+}
+section.movie-intoduce .text-area{
+    float: right;
+}
+section.movie-intoduce .text-area .title-area{
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 15px;
+}
+section.movie-intoduce .text-area .title-area h1{
+    display: inline-block;
+    font-size: 35px;
+    padding-left: 15px;
+}
+section.movie-intoduce .text-area .title-area p{
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #15a4ea;
+    border-radius:8px;
+    padding: 8px;
+}
+section.movie-intoduce .explanation-area .star{
+    position: relative;
+    display: inline-block;
+    width: 116px;
+}
+section.movie-intoduce .explanation-area .star .color-star{
+    position:absolute;
+    height: 20px;
+    background: url(http://image2.megabox.co.kr/mop/home/bg_star.png) 0 -20px no-repeat;
+    width: 92px;
+}
+section.movie-intoduce .explanation-area .star .white-star{
+    position:absolute;
+    height: 20px;
+    background: url(http://image2.megabox.co.kr/mop/home/bg_star.png) 0 0 no-repeat;
+    width: 24px;
+    right: 0;
+}
+section.movie-intoduce .explanation-area .star p{
+    position: relative;
+    top: 23px;
+    left: 5px;
+}
+section.movie-intoduce .explanation-area .grade{
+    display: inline-block;
+    position: relative;
+    top: 15px;
+    left: 15px;
+    border-right: 1px solid #e5e5e5;
+    padding-right: 25px;
+}
+section.movie-intoduce .explanation-area .grade h1{
+    font-size: 33px;
+}
+section.movie-intoduce .explanation-area .ticket{
+    display: inline-block;
+    padding-left: 35px;
+    position: relative;
+    top: 13px;
+}
+section.movie-intoduce .explanation-area .ticket p{
+    font-size: 22px;
+    display: inline-block;
+}
+section.movie-intoduce .explanation-area .ticket span{
+    font-size: 32px;
+    font-weight: bold;
+}
+section.movie-intoduce .explanation-area .text{
+    position: relative;
+    top: 35px;
+}
+section.movie-intoduce .explanation-area .text h1{
+    font-size: 18px;
+}
+section.movie-intoduce .explanation-area .text p{
+    font-size: 17px;
+    line-height: 65px;
+    display: inline-block;
+}
+section.movie-intoduce .button-area{
+    position: relative;
+    top: 72px;
+}
+section.movie-intoduce .button-area a{
+    padding: 13px;
+    border: 1px solid #e5e5e5;
+    color: #747474;
+    font-size: 18px;
+}
+section.movie-intoduce .button-area a:hover{
+    background: #747474;
+    color: #ffffff;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+section.movie-intoduce .button-area a.other{
+    margin: 15px;
+    color: #198591;
+}
+section.movie-intoduce .button-area a.other:hover{
+    border: 1px solid #198591;
+    background: #ffffff;
+}
+section.story{
+    padding-top: 0;
+}
+section.story .title{
+    padding: 25px 0 15px 0;
+    border-top: 1px solid #e5e5e5;
+}
+section.story .title h1{
+    font-size: 35px;
+    color: #3a3a3a;
+}
+section.story .text p{
+    line-height: 27px;
+    font-size: 18px;
+    color: #7d7d7d;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 45px;
+}
+section.photo{
+    padding: 0;
+    padding-bottom: 50px;
+}
+section.photo .title a h1{
+    color: #198591;
+}
+section.photo .title a p{
+    display: inline-block;
+    color: #198591;
+    font-size: 25px;
+}
+section.photo ul{
+    overflow: hidden;
+    padding-top: 35px;
+}
+section.photo ul li{
+    float: left;
+    width: 16.66%;
+}
+section.photo ul li img{
+    width: 167.18px;
+    height: 250px;
+}
+section.photo ul li img:hover{
+    border: 7px solid #198591;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+section.photo .main-img{
+    text-align: center;
+    margin-top: 50px;
+    padding: 50px 0;
+    background: #000;
+    position: relative;
+}
+section.photo .main-img img{
+    width: 350px;
+    height: 100%;
+}
+section.photo .main-img .direction a.left {
+    position: absolute;
+    left: 25px;
+    font-size: 70px;
+    color: #e5e5e5;
+    top: 45%;
+}
+section.photo .main-img .direction a.right {
+    position: absolute;
+    right: 25px;
+    font-size: 70px;
+    color: #e5e5e5;
+    top: 45%;
+}
+section.photo .button-area{
+    text-align: center;
+    padding-top: 50px;
+}
+section.photo .button-area a{
+    font-size: 25px;
+    color: #ffffff;
+    background: #198591;
+    padding: 25px 55px;
+    border-radius: 8px;
+}
+section.photo .button-area a:hover{
+    background: #ffffff;
+    color: #198591;
+    border: 1px solid #198591;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+footer{
+    background: #333;
+    height: 150px;
+    width: 100%;
+}
+footer .container{
+    position: relative;
+}
+footer .address{
+    padding: 30px 0 15px 0;
+}
+footer .address h1{
+    font-size: 18px;
+    color: #ffffff;
+    opacity: 0.5;
+    line-height: 28px;
+}
+footer nav.gnb{
+    overflow: hidden;
+}
+footer nav.gnb ul li{
+    float: left;
+    padding: 5px 10px 5px 0;
+}
+footer nav.gnb{
+    padding-bottom: 15px;
+}
+footer nav.gnb ul li a{
+    color: #ffffff;
+    opacity: 0.5;
+    font-size: 20px;
+        font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+}
+footer nav.gnb ul li.var p{
+    color: #ffffff;
+    opacity: 0.7;
+        font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+}
+footer .sns-area{
+    overflow: hidden;
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+footer .sns-area ul li{
+    float: left;
+    padding:  25px 35px 0 35px;
+}
+footer .sns-area ul li a i {
+    width: 65px;
+    height: 65px;
+    background: gray;
+    border-radius:50px;
+    text-align: center;
+    padding-top: 18px;
+    font-size: 28px;
+    color: #000000;
+}
+footer .sns-area ul li.facebook:hover a i{
+    color: #0f60c9;
+}
+footer .sns-area ul li.twitter:hover a i{
+    color: #00cdeb;
+}
+footer .sns-area ul li.instagram:hover a i{
+    color: #ea5722;
+}
+footer .sns-area ul li.message:hover a i{
+    color: #ffd913;
+}
