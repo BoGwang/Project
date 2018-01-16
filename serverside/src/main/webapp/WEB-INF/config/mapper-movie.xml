@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koitt.board.dao.MovieDaoImpl">
+
+	<insert id="insert" parameterType="Movie">
+		<selectKey keyProperty="mno" resultType="Integer" order="BEFORE">
+			SELECT movie_seq.NEXTVAL mno FROM DUAL
+		</selectKey>
+		INSERT INTO movie (mno, mtitle, director, mcontent, mposter)
+		VALUES
+		(#{mno}, #{mtitle}, #{director}, #{mcontent}, #{mposter})
+	</insert>
+
+	<resultMap type="Movie" id="movieResultMap">
+		<id property="mno" column="mno" />
+		<result property="mtitle" column="mtitle" />
+		<result property="director" column="director" />
+		<result property="mcontent" column="mcontent" />
+		<result property="mposter" column="mposter" />
+	</resultMap>
+
+	<select id="select" parameterType="String" resultMap="movieResultMap">
+		SELECT m.mno, m.mtitle, m.director, m.mcontent, m.mposter
+		FROM movie m
+		WHERE mno = #{mno}
+	</select>
+
+	<select id="selectAll" resultMap="movieResultMap">
+		SELECT m.mno, m.mtitle, m.director, m.mcontent, m.mposter
+		FROM movie m
+		WHERE m.mno ORDER BY DESC
+	</select>
+
+	<update id="update" parameterType="Movie">
+		UPDATE movie
+		SET mtitle = #{mtitle}, director = #{director}, mcontent = #{mcontent},
+		mposter = {mposter}
+		WHERE mno = #{mno}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM movie WHERE mno = #{mno}
+	</delete>
+
+
+</mapper>

@@ -10,6 +10,9 @@
 	
 	<typeAliases>
 		<typeAlias type="com.koitt.board.model.Board" alias="Board"/>
+		<typeAlias type="com.koitt.board.model.Movie" alias= "Movie"/>
+		<typeAlias type="com.koitt.board.model.Reservation" alias= "Reservation" />
+		<typeAlias type="com.koitt.board.model.Coupon" alias= "Coupon" />
 		<typeAlias type="com.koitt.board.model.UserInfo" alias="UserInfo"/>
 		<typeAlias type="com.koitt.board.model.UserType" alias="UserType"/>
 	</typeAliases>

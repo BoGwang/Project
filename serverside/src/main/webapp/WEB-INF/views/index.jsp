@@ -14,6 +14,9 @@
 	</sec:authorize>
 	<sec:authorize access="hasRole('ADMIN') or hasRole('USER')">
 		<a href="<c:url value='/board/list.do'/>">게시판으로 이동</a>
+		<a href="<c:url value='/movie/list.do'/> ">영화목록으로 이동</a>
+		<a href= "<c:url value= '/reservation/list.do'/> ">예매목록으로 이동</a>
+		<a href= "<c:url value= '/coupon/list.do'/> "> 쿠폰함으로 이동</a>
 		<a href="<c:url value='/user/setting'/>">회원정보수정</a>
 		<div>
 			<label>이메일: <span>${ userInfo.email }</span></label>

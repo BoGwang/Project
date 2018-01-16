@@ -229,9 +229,9 @@ public class MovieRestController {
 			movie.setMposter(uploadFilename);
 		}
 
-		String newFilename = movieService.modify(movie);
-		if (newFilename != null && !newFilename.trim().isEmpty()) {
-			fileService.remove(request, UPLOAD_FOLDER, newFilename);
+		String oldFilename = movieService.modify(movie);
+		if (oldFilename != null && !oldFilename.trim().isEmpty()) {
+			fileService.remove(request, UPLOAD_FOLDER, oldFilename);
 		}
 
 		return new ResponseEntity<Void>(HttpStatus.OK);

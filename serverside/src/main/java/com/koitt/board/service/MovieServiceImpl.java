@@ -50,7 +50,7 @@ public class MovieServiceImpl implements MovieService {
 		Movie item = dao.select(Integer.toString(movie.getMno()));
 		String newFilename = item.getMposter();
 		dao.update(movie);
-
+    
 		return newFilename;
 	}
 
