@@ -1,0 +1,71 @@
+.popup-screen{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 1500;
+    display: none;
+}
+.active_login .popup-screen{
+    display: block;
+}
+#text-area{
+    padding: 25px;
+    width: 1300px;
+    height: 500px;
+    top: -1000px;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    position: fixed;
+    background: #ffffff;
+    z-index:1600;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    opacity:0;
+    text-align: center;
+}
+.active_login #text-area{
+    top: 50%;
+    opacity: 1;
+}
+#text-area h4{
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+    border-bottom: 3px solid #41297a ;
+    padding-bottom: 30px;
+    display: inline-block;
+    width: 250px;
+}
+#text-area .text{
+    padding: 30px 0 80px 0;
+}
+#text-area .text p{
+    font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+    font-size: 30px;
+    line-height: 45px;
+}
+.popup #text-area .btn-close{
+    text-align: center;
+    cursor: pointer;
+    padding-top: 40px;
+    font-size: 26px;
+    border-top: 3px solid #41297a;
+}
+.popup #text-area .btn-close a{
+    padding: 10px 45px;
+    background: #41297a;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 18px;
+}

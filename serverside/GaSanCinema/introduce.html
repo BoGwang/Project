@@ -4,11 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/popup.css">
     <link rel="stylesheet" href="css/introduce.css">
     <link rel="stylesheet" href="css/font.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+    <script src="js/script.js"></script>
 </head>
 <body>
+<div class="popup">
+    <div class="popup-screen"></div>
+    <div id="text-area">
+        <h4>GaSan Cinema</h4>
+        <div class="text">
+            <p>
+                홍길동님<br>
+                예매하신 영화가 취소되었습니다.<br>
+                즐거운 하루 되세요
+            </p>
+        </div>
+        <div class="btn-close">
+            <a href="#!">
+                닫기
+            </a>
+        </div>
+    </div>
+</div>
 <div class="header">
     <div class="main-header">
         <div class="container">
@@ -171,7 +193,7 @@
             </div>
         </div>
         <div class="button-area">
-            <a href="#!">
+            <a href="#!" class="btn-popup">
                 예매
             </a>
         </div>
