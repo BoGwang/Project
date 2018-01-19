@@ -11,8 +11,18 @@
     width: 1000px;
     margin: 0 auto;
 }
+h1{
+    font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+    display: inline-block;
+}
+p{
+    font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+}
 table, th, td{
     border-collapse:collapse;
+}
+span{
+    font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
 }
 section{
     padding: 50px 0 50px 0;
@@ -20,7 +30,11 @@ section{
 .header{
     background: #ffffff;
     width: 100%;
-    height: 45px;
+    height: 103px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    overflow: hidden;
 }
 .header .main-header{
     overflow: hidden;
@@ -31,9 +45,27 @@ section{
     border-bottom: 3px solid #503396;
     padding: 15px 0;
 }
-.header .sub-header .title a h3{
-    color: #503396;
+.header .sub-header ul{
+    overflow: hidden;
+}
+.header .sub-header ul li.title{
+    float: left;
+    padding: 0 100px 0 0;
+}
+.header .sub-header ul li.title a h3{
+    color: #000000;
     font-size: 18px;
+}
+.header .sub-header ul li#actvie a h3{
+    color: #503396;
+}
+.header .sub-header ul li.title:hover a h3{
+    color: #503396;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
 }
 .header .main-header nav.gnb{
     float: right;
@@ -66,90 +98,74 @@ section{
 .header .main-header nav.gnb ul li#actvie a .nav-link{
     color: #198591;
 }
-section.input-area{
-    height: 779px;
+section.confirm{
+    height: 824px;
+    padding-top: 170px;
 }
-section.input-area .title-area{
-    padding-top: 80px;
+section.confirm .title-area{
+    text-align: center;
+    padding-bottom: 50px;
+    color: #41297a;
 }
-section.input-area .title-area .title h1{
-    font-size: 28px;
+section.confirm .title-area h1{
+    font-size: 35px;
+}
+section.confirm .chart table{
+    border: 1px solid #bebebe;
+    display: block;
+    width: 60%;
     display: inline-block;
-    padding: 5px;
-    color: #606060;
 }
-section.input-area .title-area .title p{
-    display: inline-block;
-    font-size: 18px;
-    padding: 5px;
-    color: #606060;
-}
-section.input-area .input-area{
-    padding-top: 30px;
-}
-section.input-area .input-area table{
-    border-top: 3px solid #503396;
+section.confirm .chart table tbody{
     display: block;
 }
-section.input-area .input-area table tbody{
-    display: block;
-}
-section.input-area .input-area table tr{
+section.confirm .chart table tr{
     border-bottom: 1px solid #bebebe;
     display: block;
 }
-section.input-area .input-area table tr td{
+section.confirm .chart table tr:last-child{
+    border: 0;
+}
+section.confirm .chart table tr td{
     font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
     padding: 15px 30px ;
     font-size: 18px;
     font-weight: bold;
 }
-section.input-area .input-area table tr td input{
-    width: 250px;
-    height: 40px;
-    font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
-    font-size: 15px;
-    display: inline-block;
-    padding: 3px;
+section.confirm .chart table tr td:nth-of-type(1){
+    background: #f2f2f2;
+    width: 150px;
+    color: #8b8b8b;
+    border-right: 1px solid #bebebe;
 }
-section.input-area .input-area table tr td p{
+section.confirm .chart table tr td p{
     font-size: 13px;
     display: inline-block;
     padding: 5px;
     color: #5e5e5e;
 }
-section.input-area .input-area table tr td .button-area{
-    display: inline-block;
-    text-align: center;
-}
-section.input-area .input-area table tr td .button-area a{
-    padding: 5px 12px;
-    background: #e5e5e5;
-    margin: 10px;
-    position: relative;
-    bottom: 10px;
-    font-size: 15px;
-    display: block;
-    color: #000000;
-    border: 1px solid #c4c4c4;
-}
-section.input-area .input-area table tr td:nth-of-type(1){
-    width: 250px;
-    text-align: left;
-    background: #e5e5e5;
-}
-section.input-area .button-area{
-    text-align: center;
-    padding: 80px 0;
-}
-section.input-area .button-area a{
-    padding: 15px 55px 15px 55px;
-    border: 1px solid #41297a;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
+section.confirm .chart table tr td h1{
     font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", dotum, 돋움, "Apple SD Gothic Neo", sans-serif;
+    font-size: 18px;
+}
+section.confirm .chart .img-area{
+    display: inline-block;
+    padding-left: 70px;
+}
+section.confirm .chart .img-area img{
+    width: 240px;
+    height: 366px;
+}
+section.confirm .chart .button-area{
+    text-align: center;
+    padding-top: 65px;
+}
+section.confirm .chart .button-area a {
+    font-size: 18px;
+    color: #ffffff;
     background: #41297a;
+    padding: 15px 25px;
+    border-radius: 8px;
 }
 footer{
     background: #333;
@@ -221,4 +237,3 @@ footer .sns-area ul li.instagram:hover a i{
 footer .sns-area ul li.message:hover a i{
     color: #ffd913;
 }
-

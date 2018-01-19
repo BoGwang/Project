@@ -66,7 +66,9 @@ section{
 .header .main-header nav.gnb ul li#actvie a .nav-link{
     color: #198591;
 }
-
+section.input-area{
+    height: 779px;
+}
 section.input-area .title-area{
     padding-top: 80px;
 }
