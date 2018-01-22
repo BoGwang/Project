@@ -13,7 +13,7 @@ var marketer = {
         })
     },
     login_modal : function () {
-        $('.btn-popup').click(function () {
+        $('.reg-btn').click(function () {
             $('html').addClass('active_login')
         })
         $('.btn-close, .popup-screen').click(function () {
@@ -28,7 +28,7 @@ var marketer = {
             $('html').removeClass('active_login')
         })
     }
-}
+};
 $(function () {
     marketer.init()
-})
+});

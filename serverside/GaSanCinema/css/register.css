@@ -1,0 +1,80 @@
+li {
+    list-style: none;
+}
+.button-area{
+    text-align: center;
+}
+.reg-btn {
+    display: inline-block;
+    margin: 15px;
+    width: 175px;
+    height: 44px;
+    line-height: 44px;
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    background: #41297a;
+    font-weight: bold;
+    border-radius: 8px;
+    transition-delay: inherit;
+}
+.reg-btn-reset {
+    display: inline-block;
+    margin: 15px;
+    width: 175px;
+    height: 44px;
+    line-height: 44px;
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    background: #41297a;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.reg-btn:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#sname {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.table-join {
+    width: 500px;
+    margin: 60px 50px;
+}
+
+.table-join tr th {
+    margin-top: 30px;
+    padding-bottom: 15px;
+}
+
+.table-join tr td input {
+    line-height: normal;
+    padding: .8em .5em;
+    margin-top: 30px;
+    font-family: inherit;
+    border: 1px solid #999;
+    border-radius: 0;
+    outline-style: none;
+    -webkit-appearance: none;
+    /* 브라우저별 기본 스타일링 제거 */
+    -moz-appearance: none;
+    appearance: none;
+}
+.synop {
+    width: 350px;
+    height: 500px;
+    resize: none;
+}
