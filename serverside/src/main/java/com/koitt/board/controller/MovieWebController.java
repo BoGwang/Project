@@ -35,10 +35,10 @@ import com.koitt.board.service.MovieService;
 import com.koitt.board.service.UserInfoService;
 
 @Controller
-@RequestMapping("/rest")
+@RequestMapping("/movie")
 public class MovieWebController {
 
-	private static final String UPLOAD_FOLDER = "/poster";
+	private static final String UPLOAD_FOLDER = "/movieposter";
 
 	private Logger logger = LogManager.getLogger(this.getClass());
 
@@ -47,34 +47,33 @@ public class MovieWebController {
 
 	@Autowired
 	private FileService fileService;
-	
+
 	@Autowired
 	private UserInfoService userInfoService;
 
 	// 영화 목록 화면
-	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/movielist.do", method = RequestMethod.GET)
 	public String list(Model model) throws CommonException {
-		List<Movie> list = null;
+		List<Movie> movielist = null;
 
-		list = movieService.list();
-		
-		logger.debug(list);
-		
-		model.addAttribute("list", list);
-		return "list";
+		movielist = movieService.listAll();
+
+		logger.debug(movielist);
+
+		model.addAttribute("movielist", movielist);
+		return "movie-list";
 	}
 
 	// 글 상세 화면
-	@RequestMapping(value = "/detail.do", method = RequestMethod.GET)
-	public String detail(Model model, 
-			@RequestParam(value = "mno", required=true) String mno)
-					throws CommonException, Exception {
+	@RequestMapping(value = "/moviedetail.do", method = RequestMethod.GET)
+	public String detail(Model model, @RequestParam(value = "movieNo", required = true) String movieNo)
+			throws CommonException, Exception {
 
 		Movie movie = null;
 		String filename = null;
 
-		movie = movieService.detail(mno);
-		filename = movie.getMposter();
+		movie = movieService.detail(movieNo);
+		filename = movie.getMovieposter();
 		if (filename != null && !filename.trim().isEmpty()) {
 			filename = URLDecoder.decode(filename, "UTF-8");
 		}
@@ -82,43 +81,40 @@ public class MovieWebController {
 		model.addAttribute("item", movie);
 		model.addAttribute("filename", filename);
 
-		return "detail";	// /WEB-INF/views/detail.jsp 페이지로 이동
+		return "movie-detail"; // /WEB-INF/views/detail.jsp 페이지로 이동
 	}
 
 	// 영화 작성 화면
-	@RequestMapping(value = "/new.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/movienew.do", method = RequestMethod.GET)
 	public String newMovie(Model model) {
-		
+
 		String email = this.getPrincipal();
 		UserInfo item = userInfoService.detail(email);
-		
+
 		model.addAttribute("id", item.getId());
 		model.addAttribute("email", item.getEmail());
 
-		return "new";
+		return "movie-new";
 	}
 
 	// 영화 작성 후, 영화 목록 화면으로 이동
-	@RequestMapping(value = "/new.do", method = RequestMethod.POST)
-	public String newMovie(HttpServletRequest request,
-			Integer mno,
-			String mtitle,
-			String mcontent,
-			String director,
-			@RequestParam("mposter") MultipartFile mposter)
-					throws CommonException, Exception {
+	@RequestMapping(value = "/movienew.do", method = RequestMethod.POST)
+	public String newMovie(HttpServletRequest request, Integer movieNo, String movietitle, String moviecontent,
+			String moviedirector, Integer movieruntime, @RequestParam("movieposter") MultipartFile movieposter)
+			throws CommonException, Exception {
 
 		Movie movie = new Movie();
-		movie.setMno(mno);
-		movie.setMtitle(mtitle);
-		movie.setDirector(director);
-		movie.setMcontent(mcontent);
+		movie.setMoviedirector(moviedirector);
+		movie.setMovieNo(movieNo);
+		movie.setMovietitle(movietitle);
+		movie.setMoviecontent(moviecontent);
+		movie.setMovieruntime(movieruntime);
 
 		// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
 
 		// MultipartFile 객체에서 파일명을 가져온다.
-		String originalName = mposter.getOriginalFilename();
+		String originalName = movieposter.getOriginalFilename();
 
 		// upload 폴더가 없다면, upload 폴더 생성
 		File directory = new File(path);
@@ -127,120 +123,88 @@ public class MovieWebController {
 		}
 
 		// attachment 객체를 이용하여, 파일을 서버에 전송
-		if (mposter != null && !mposter.isEmpty()) {
+		if (movieposter != null && !movieposter.isEmpty()) {
 			int idx = originalName.lastIndexOf(".");
 			String name = originalName.substring(0, idx);
 			String ext = originalName.substring(idx, originalName.length());
-			String uploadFilename = name
-					+ Long.toHexString(System.currentTimeMillis())
-					+ ext;
-			mposter.transferTo(new File(path, uploadFilename));
+			String uploadFilename = name + Long.toHexString(System.currentTimeMillis()) + ext;
+			movieposter.transferTo(new File(path, uploadFilename));
 			uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
-			movie.setMposter(uploadFilename);
+			movie.setMovieposter(uploadFilename);
 		}
 
 		movieService.newMovie(movie);
 
-		return "redirect:list.do";
-	}
-
-	// 글 삭제 확인 화면
-	@RequestMapping(value = "/remove.do", method = RequestMethod.GET)
-	public String removeConfirm(Model model,
-			@RequestParam(value = "mno", required = true) String mno) {
-
-		model.addAttribute("mno", mno);
-
-		return "remove-confirm";
-	}
-
-	// 글 삭제 후, 글 목록 화면으로 이동
-	@RequestMapping(value = "/remove.do", method = RequestMethod.POST)
-	public String remove(HttpServletRequest request,
-			@RequestParam(value = "mno", required = true) String mno,
-			String password)
-					throws CommonException, UnsupportedEncodingException {
-		
-		boolean isMatched = userInfoService.isMovieMatched(Integer.parseInt(mno), password);
-		if (!isMatched) {
-			return "redirect:/movie/remove.do?mno=" + mno + "&action=error-password";
-		}
-
-		String filename = movieService.remove(mno);
-		if (filename != null && !filename.trim().isEmpty()) {
-			fileService.remove(request, UPLOAD_FOLDER, filename);
-		}
-
-		return "redirect:list.do";
+		return "redirect:movie-list.do";
 	}
 
 	// 글 수정하기 화면
 	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
-	public String modify(Model model,
-			@RequestParam(value = "mno", required = true) String mno)
-					throws CommonException {
+	public String modify(Model model, @RequestParam(value = "movieNo", required = true) String movieNo)
+			throws CommonException {
 
 		Movie item = null;
 
-		item = movieService.detail(mno);
+		item = movieService.detail(movieNo);
 
 		model.addAttribute("item", item);
 
-		return "modify";
+		return "movie-modify";
 	}
+	
+	// 글 삭제 후, 글 목록 화면으로 이동
+	@RequestMapping(value = "/remove.do", method = RequestMethod.GET)
+	public String remove(HttpServletRequest request,
+			@RequestParam(value = "movieNo", required = true) String movieNo
+			)
+					throws CommonException, UnsupportedEncodingException {								
+		String filename = movieService.remove(movieNo);
+		if (filename != null && !filename.trim().isEmpty()) {
+			fileService.remove(request, UPLOAD_FOLDER, filename);
+		}
+		return "redirect:movie-list.do";
+	}
+
 
 	// 글 수정 후, 글 목록 화면으로 이동
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-	public String modify(HttpServletRequest request,
-			int mno,
-			String mtitle,
-			String mcontent,
-			String director,
-			@RequestParam("mposter") MultipartFile mposter,
-			String password)
-					throws CommonException, Exception {
-		
-		// 비밀번호 비교해서 같지 않다면 오류메시지 출력
-		boolean isMatched = userInfoService.isMovieMatched(mno, password);
-		if (!isMatched) {
-			return "redirect:/board/modify.do?mno=" + mno + "&action=error-password";
-		}
+	public String modify(HttpServletRequest request, Integer movieNo, String movietitle, String moviecontent,
+			String moviedirector, Integer movieruntime, @RequestParam("movieposter") MultipartFile movieposter,
+			String password) throws CommonException, Exception {
 
 		Movie movie = new Movie();
-		movie.setMno(mno);
-		movie.setMtitle(mtitle);
-		movie.setMcontent(mcontent);
-		movie.setDirector(director);
+		movie.setMovieNo(movieNo);
+		movie.setMovietitle(movietitle);
+		movie.setMoviecontent(moviecontent);
+		movie.setMoviedirector(moviedirector);
+		movie.setMovieruntime(movieruntime);
 
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
-		String originalName = mposter.getOriginalFilename();
+		String originalName = movieposter.getOriginalFilename();
 
 		// attachment 객체를 이용하여, 파일을 서버에 전송
-		if (mposter != null && !mposter.isEmpty()) {
+		if (movieposter != null && !movieposter.isEmpty()) {
 			int idx = originalName.lastIndexOf(".");
 			String name = originalName.substring(0, idx);
 			String ext = originalName.substring(idx, originalName.length());
-			String uploadFilename = name
-					+ Long.toHexString(System.currentTimeMillis())
-					+ ext;
-			mposter.transferTo(new File(path, uploadFilename));
+			String uploadFilename = name + Long.toHexString(System.currentTimeMillis()) + ext;
+			movieposter.transferTo(new File(path, uploadFilename));
 			uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
-			movie.setMposter(uploadFilename);
+			movie.setMovieposter(uploadFilename);
 		}
 
-		String newFilename = movieService.modify(movie);
+		String newFilename = movieService.modifyMovie(movie);
 		if (newFilename != null && !newFilename.trim().isEmpty()) {
 			fileService.remove(request, UPLOAD_FOLDER, newFilename);
 		}
 
-		return "redirect:list.do";
+		return "redirect:movie-list.do";
 	}
 
 	// 파일 내려받기
-	@RequestMapping(value = "/download.do", method = RequestMethod.GET, params="filename")
-	public void download(HttpServletRequest request, 
-			HttpServletResponse response, String filename)
-					throws CommonException {
+	@RequestMapping(value = "/download.do", method = RequestMethod.GET, params = "filename")
+	public void download(HttpServletRequest request, HttpServletResponse response, String filename)
+			throws CommonException {
 
 		int length = 0;
 		byte[] buff = new byte[1024];
@@ -260,21 +224,19 @@ public class MovieWebController {
 			filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
 
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", 
-					"attachment; filename=" + filename + ";");
+			response.setHeader("Content-Disposition", "attachment; filename=" + filename + ";");
 			response.setHeader("Content-Transfer-Encoding", "binary");
 			response.setHeader("Content-Length", Integer.toString(fis.available()));
 			response.setHeader("Pragma", "no-cache");
 			response.setHeader("Expires", "-1");
 
 			/*
-			 * Connection Stream: ServletOutputStream
-			 * Chain Stream: BufferedOutputStream
+			 * Connection Stream: ServletOutputStream Chain Stream: BufferedOutputStream
 			 */
 			bos = new BufferedOutputStream(response.getOutputStream());
 
 			// 서버에 있는 파일을 읽어서 (fis), 클라이언트에게 파일을 전송(bos)
-			while ( (length = fis.read(buff)) > 0) {
+			while ((length = fis.read(buff)) > 0) {
 				bos.write(buff, 0, length);
 			}
 
@@ -315,8 +277,7 @@ public class MovieWebController {
 
 		if (principal instanceof UserDetails) {
 			username = ((UserDetails) principal).getUsername();
-		}
-		else {
+		} else {
 			username = principal.toString();
 		}
 

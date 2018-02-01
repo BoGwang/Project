@@ -1,83 +1,89 @@
 package com.koitt.board.model;
 
-import java.sql.Date;
-
 // JAVA Bean (VO, DTO)
 public class Movie {
-	
-	private Integer mno;  // 영화 번호
-	private String mtitle; // 영화 제목
-	private String director; // 영화 감독
-	private String mcontent;  // 영화 줄거리
-	private String mposter; // 영화 포스터/ 사진
-	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public Movie() {}
+	private Integer movieNo;
+	private String movietitle;
+	private String moviecontent;
+	private String movieposter;
+	private Integer movieruntime;
+	private String moviedirector;
 
-	//////////////////////////////////////////////////////////////////////////////////////
-	public Movie(Integer mno, String mtitle, String director, String mcontent, String mposter) {
-		this.mno = mno;
-		this.mtitle = mtitle;
-		this.director = director;
-		this.mcontent = mcontent;
-		this.mposter = mposter;
-	}
-	
-	/////////////////////////////////////////////////////////////////////////////////////////
-
-	public Integer getMno() {
-		return mno;
+	public Movie() {
 	}
 
-	public void setMno(Integer mno) {
-		this.mno = mno;
+	public Movie(Integer movieNo, String movietitle, String moviecontent, String movieposter, Integer movieruntime,
+			String moviedirector) {
+		super();
+		this.movieNo = movieNo;
+		this.movietitle = movietitle;
+		this.moviecontent = moviecontent;
+		this.movieposter = movieposter;
+		this.movieruntime = movieruntime;
+		this.moviedirector = moviedirector;
 	}
 
-	public String getMtitle() {
-		return mtitle;
+	public Integer getMovieNo() {
+		return movieNo;
 	}
 
-	public void setMtitle(String mtitle) {
-		this.mtitle = mtitle;
+	public void setMovieNo(Integer movieNo) {
+		this.movieNo = movieNo;
 	}
 
-	public String getDirector() {
-		return director;
+	public String getMovietitle() {
+		return movietitle;
 	}
 
-	public void setDirector(String director) {
-		this.director = director;
+	public void setMovietitle(String movietitle) {
+		this.movietitle = movietitle;
 	}
 
-	public String getMcontent() {
-		return mcontent;
+	public String getMoviecontent() {
+		return moviecontent;
 	}
 
-	public void setMcontent(String mcontent) {
-		this.mcontent = mcontent;
+	public void setMoviecontent(String moviecontent) {
+		this.moviecontent = moviecontent;
 	}
 
-	public String getMposter() {
-		return mposter;
+	public String getMovieposter() {
+		return movieposter;
 	}
 
-	public void setMposter(String mposter) {
-		this.mposter = mposter;
+	public void setMovieposter(String movieposter) {
+		this.movieposter = movieposter;
+	}
+
+	public Integer getMovieruntime() {
+		return movieruntime;
+	}
+
+	public void setMovieruntime(Integer movieruntime) {
+		this.movieruntime = movieruntime;
+	}
+
+	public String getMoviedirector() {
+		return moviedirector;
+	}
+
+	public void setMoviedirector(String moviedirector) {
+		this.moviedirector = moviedirector;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((director == null) ? 0 : director.hashCode());
-		result = prime * result + ((mcontent == null) ? 0 : mcontent.hashCode());
-		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
-		result = prime * result + ((mposter == null) ? 0 : mposter.hashCode());
-		result = prime * result + ((mtitle == null) ? 0 : mtitle.hashCode());
+		result = prime * result + ((movieNo == null) ? 0 : movieNo.hashCode());
+		result = prime * result + ((moviecontent == null) ? 0 : moviecontent.hashCode());
+		result = prime * result + ((moviedirector == null) ? 0 : moviedirector.hashCode());
+		result = prime * result + ((movieposter == null) ? 0 : movieposter.hashCode());
+		result = prime * result + ((movieruntime == null) ? 0 : movieruntime.hashCode());
+		result = prime * result + ((movietitle == null) ? 0 : movietitle.hashCode());
 		return result;
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,54 +93,56 @@ public class Movie {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie other = (Movie) obj;
-		if (director == null) {
-			if (other.director != null)
+		if (movieNo == null) {
+			if (other.movieNo != null)
 				return false;
-		} else if (!director.equals(other.director))
+		} else if (!movieNo.equals(other.movieNo))
 			return false;
-		if (mcontent == null) {
-			if (other.mcontent != null)
+		if (moviecontent == null) {
+			if (other.moviecontent != null)
 				return false;
-		} else if (!mcontent.equals(other.mcontent))
+		} else if (!moviecontent.equals(other.moviecontent))
 			return false;
-		if (mno == null) {
-			if (other.mno != null)
+		if (moviedirector == null) {
+			if (other.moviedirector != null)
 				return false;
-		} else if (!mno.equals(other.mno))
+		} else if (!moviedirector.equals(other.moviedirector))
 			return false;
-		if (mposter == null) {
-			if (other.mposter != null)
+		if (movieposter == null) {
+			if (other.movieposter != null)
 				return false;
-		} else if (!mposter.equals(other.mposter))
+		} else if (!movieposter.equals(other.movieposter))
 			return false;
-		if (mtitle == null) {
-			if (other.mtitle != null)
+		if (movieruntime == null) {
+			if (other.movieruntime != null)
 				return false;
-		} else if (!mtitle.equals(other.mtitle))
+		} else if (!movieruntime.equals(other.movieruntime))
+			return false;
+		if (movietitle == null) {
+			if (other.movietitle != null)
+				return false;
+		} else if (!movietitle.equals(other.movietitle))
 			return false;
 		return true;
 	}
-	//////////////////////////////////////////////////////////////////////////////////////
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Movie [mno=");
-		builder.append(mno);
-		builder.append(", mtitle=");
-		builder.append(mtitle);
-		builder.append(", director=");
-		builder.append(director);
-		builder.append(", mcontent=");
-		builder.append(mcontent);
-		builder.append(", mposter=");
-		builder.append(mposter);
+		builder.append("Movie [movieNo=");
+		builder.append(movieNo);
+		builder.append(", movietitle=");
+		builder.append(movietitle);
+		builder.append(", moviecontent=");
+		builder.append(moviecontent);
+		builder.append(", movieposter=");
+		builder.append(movieposter);
+		builder.append(", movieruntime=");
+		builder.append(movieruntime);
+		builder.append(", moviedirector=");
+		builder.append(moviedirector);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
-
 
 }

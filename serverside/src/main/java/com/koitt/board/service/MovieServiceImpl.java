@@ -26,41 +26,39 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public Movie detail(String mno) throws CommonException {
-		return dao.select(mno);
+	public Movie detail(String movieNo) throws CommonException {
+		return dao.select(movieNo);
 	}
 
 	@Override
-	public List<Movie> list() throws CommonException {
+	public List<Movie> listAll() throws CommonException {
 		return dao.selectAll();
 	}
 
-	@Override
-	public int count() throws CommonException {
-		return dao.movieCount();
-	}
 
 	@Transactional
 	@Override
-	public String modify(Movie movie) throws CommonException {
+	public String modifyMovie(Movie movie) throws CommonException {
 		/*
 		 *  파라메터의 movie 객체는 이미 수정된 정보를 담고 있다.
 		 *  따라서 기존 데이터베이스에서 글번호로 기존 데이터를 불러온다.
 		 */
-		Movie item = dao.select(Integer.toString(movie.getMno()));
-		String newFilename = item.getMposter();
+		Movie item = dao.select(Integer.toString(movie.getMovieNo()));
+		String newFilename = item.getMovieposter();
 		dao.update(movie);
     
 		return newFilename;
 	}
-
+	
 	@Transactional
 	@Override
-	public String remove(String mno) throws CommonException {
-		Movie item = dao.select(mno);
-		String filename = item.getMposter();
-		dao.delete(mno);
+	public String remove(String movieNo) throws CommonException {
+		Movie item = dao.select(movieNo);
+		String filename = item.getMovieposter();
+		dao.delete(movieNo);
 
 		return filename;
 	}
+
+
 }

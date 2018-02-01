@@ -4,26 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koitt.board.dao.CouponDaoImpl">
 
-	<insert id="insert" parameterType="Coupon">
+<insert id="insert" parameterType="Coupon">
 		<selectKey keyProperty="cno" resultType="Integer" order="BEFORE">
 			SELECT coupon_seq.NEXTVAL cno FROM DUAL
 		</selectKey>
-		INSERT INTO coupon (cno, id, email,sale)
-		VALUES (#{cno}, #{id}, #{email}, #{sale})
+		INSERT INTO coupon (cno, sale)
+		VALUES
+		(coupon_SEQ.NEXTVAL,#{sale})
 	</insert>
+	
 
 	<resultMap type="Coupon" id="couponResultMap">
 		<id property="cno" column="cno" />
-		<result property="id" column="id" />
-		<result property="email" column="email" />
-		<result property= "sale" column="sale" />
+		<result property="sale" column="sale" />
 		</resultMap>
 
-   <select id="select" parameterType="String" resultMap="couponResultMap">
-       SELECT c.no , u.id , u.email
-       FROM user_info u, coupon c
-       WHERE u.id = u.email AND cno = #{cno}
-      </select>
+	<select id="select" parameterType="String" resultMap="couponResultMap">
+		SELECT * FROM coupon WHERE cno = #{cno}
+	</select>
+
+	<select id="selectAll" resultMap="couponResultMap">
+		SELECT * FROM coupon
+	</select>
+	
+
       
-  
+
 </mapper>

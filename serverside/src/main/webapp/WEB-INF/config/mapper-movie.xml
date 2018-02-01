@@ -5,43 +5,40 @@
 <mapper namespace="com.koitt.board.dao.MovieDaoImpl">
 
 	<insert id="insert" parameterType="Movie">
-		<selectKey keyProperty="mno" resultType="Integer" order="BEFORE">
-			SELECT movie_seq.NEXTVAL mno FROM DUAL
+		<selectKey keyProperty="movieNo" resultType="Integer" order="BEFORE">
+			SELECT movie_seq.NEXTVAL  FROM DUAL
 		</selectKey>
-		INSERT INTO movie (mno, mtitle, director, mcontent, mposter)
+		INSERT INTO movie (mov_no, mov_title, mov_content, mov_director, mov_runtime, mov_poster)
 		VALUES
-		(#{mno}, #{mtitle}, #{director}, #{mcontent}, #{mposter})
+		(movie_SEQ.NEXTVAL, #{movietitle},  #{moviecontent}, #{moviedirector}, #{movieruntime}, #{movieposter})
 	</insert>
 
 	<resultMap type="Movie" id="movieResultMap">
-		<id property="mno" column="mno" />
-		<result property="mtitle" column="mtitle" />
-		<result property="director" column="director" />
-		<result property="mcontent" column="mcontent" />
-		<result property="mposter" column="mposter" />
+		<id property="movieNo" column="mov_no" />
+		<result property="movietitle" column="mov_title" />
+		<result property="moviecontent" column="mov_content" />
+		<result property="movieposter" column="mov_poster" />
+		<result property="moviedirector" column="mov_director" />
+		<result property= "movieruntime" column="mov_runtime"/> 
 	</resultMap>
 
 	<select id="select" parameterType="String" resultMap="movieResultMap">
-		SELECT m.mno, m.mtitle, m.director, m.mcontent, m.mposter
-		FROM movie m
-		WHERE mno = #{mno}
+		SELECT * FROM movie WHERE mov_no = #{movieNO}
 	</select>
 
+    <!-- 전체 가져오는것 -->
 	<select id="selectAll" resultMap="movieResultMap">
-		SELECT m.mno, m.mtitle, m.director, m.mcontent, m.mposter
-		FROM movie m
-		WHERE m.mno ORDER BY DESC
+		SELECT * FROM movie
 	</select>
 
 	<update id="update" parameterType="Movie">
 		UPDATE movie
-		SET mtitle = #{mtitle}, director = #{director}, mcontent = #{mcontent},
-		mposter = {mposter}
-		WHERE mno = #{mno}
+		SET mov_title = #{movietitle},  mov_content = #{moviecontent}, mov_director = #{moviedirector}, movie_runtime = #{movieruntime}
+		WHERE mov_no = #{movieNo}
 	</update>
 
 	<delete id="delete" parameterType="String">
-		DELETE FROM movie WHERE mno = #{mno}
+		DELETE FROM movie WHERE movie_no = #{movieNo}
 	</delete>
 
 

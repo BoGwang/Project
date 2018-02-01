@@ -24,17 +24,6 @@ public class CouponDaoImpl implements CouponDao {
 	
 	public CouponDaoImpl() {}
 
-	// 영화 등록 임플
-	@Override
-	public void insert(Coupon coupon) throws CommonException {
-		try {
-			sqlSession.insert(MAPPER_NAMESPACE + ".insert", coupon);
-			
-		} catch (Exception e) {
-			logger.debug(e.getMessage());
-			throw new CommonException("E05: 쿠폰 받기 실패");
-		}
-	}
 
 	// 영화 한편 가져오는거 임플
 	@Override
@@ -65,21 +54,6 @@ public class CouponDaoImpl implements CouponDao {
 		}
 		
 		return clist;
-	}
-
-	@Override
-	public int couponCount() throws CommonException {
-		Integer ccount = 0;
-		
-		try {
-			ccount = sqlSession.selectOne(MAPPER_NAMESPACE + ".count");
-			
-		} catch (Exception e) {
-			logger.debug(e.getMessage());
-			throw new CommonException("E10: 전체 쿠폰 개수 가져오기 실패");
-		}
-		
-		return ccount;
 	}
 
 

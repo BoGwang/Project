@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koitt.board.dao.ScheduleDaoImpl">
+
+	<!-- 극장 -->
+	<resultMap type="Theater" id="theaterResultMap">
+		<id property="theNo" column="the_no" />
+		<result property="thename" column="the_name" />
+	</resultMap>
+
+	<!-- 상영관 -->
+	<resultMap type="Screen" id="screenResultMap">
+		<id property="scNO" column="sc_no" />
+		<result property="theNo" column="the_no" />
+		<result property="scname" column="sc_name" />
+		<result property="scline" column="sc_line" />
+		<result property="scseat" column="sch_seat" />
+	</resultMap>
+
+	<!-- 티켓 == 예매랑 같은것 -->
+	<resultMap type="Ticket" id="ticketResultMap">
+		<id property="ticNO" column="tic_no" />
+		<result property="id" column="id" />
+		<result property="schNo" column="sch_no" />
+		<result property="ticseatno" column="tic_seatno" />
+	</resultMap>
+
+	<!-- 스케줄 -->
+	<resultMap type="Schedule" id="scheduleResultMap">
+		<id property="schNO" column="sch_no" />
+		<result property="theNo" column="the_no" />
+		<result property="movNo" column="mov_no" />
+		<result property="scNo" column="sc_no" />
+		<result property="schstarttime" column="sch_starttime" />
+	</resultMap>
+
+<!-- 영화관 추가 -->
+	<insert id="insertTheater" parameterType="Theater">
+		<selectKey keyProperty="theNo" resultType="Integer" order="BEFORE">
+			SELECT theater_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO theater (the_no, the_name )
+		VALUES (theater_SEQ.NEXTVAL,
+		#{thename})
+	</insert>
+
+<!-- 영화관 수정 -->
+	<update id="updateTheater" parameterType="Theater">
+		UPDATE theater
+		SET
+		the_name = #{thename}
+		WHERE the_no=#{theNo}
+	</update>
+
+<!-- 영화관 검색 -->
+	<select id="selecttheater" parameterType="String" resultMap="theaterResultMap">
+		SELECT *
+		FROM theater WHERE the_no = #{theNo}
+	</select>
+
+<!-- 상영관 추가 -->
+	<insert id="insertScreen" parameterType="Screen">
+		<selectKey keyProperty="scNo" resultType="Integer" order="BEFORE">
+			SELECT screen_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO screen (sc_no, the_no, sc_name, sc_line, sc_seat )
+		VALUES
+		(screen_SEQ.NEXRVAL, #{theNo}, #{scname}, #{scline}, #{scseat} )
+	</insert>
+
+<!-- 상영관 수정 -->
+	<update id="updateScreen" parameterType="Screen">
+		UPDATE screen
+		SET
+		the_no =
+		#{theNo}, sc_name = #{scname}, sc_line = #{scline}, sc_seat =
+		#{scseat}
+		WHERE sc_no=#{scNo}
+	</update>
+
+<!-- 상영관 검색 -->
+	<select id="selectscreen" parameterType="String" resultMap="screenResultMap">
+		SELECT *
+		FROM screen WHERE sc_no = #{scNo}
+	</select>
+	
+ <!-- 스케줄 추가 -->
+	<insert id="insertSchedule" parameterType="Schedule">
+		<selectKey keyProperty="schNo" resultType="Integer" order="BEFORE">
+			SELECT schedule_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO schedule (sch_no, the_no, mov_no, sc_no, sch_startime)
+		VALUES
+		(schedule.SEQ.NEXTVAL, #{theNo}, #{movNo}, #{scNo}, #{schstarttime})
+	</insert>
+
+<!-- 스케줄 검색 -->
+	<select id="selectschedule" parameterType="String" resultMap="scheduleResultMap">
+		SELECT *
+		FROM schedule WHERE sch_no = #{schNo}
+	</select>
+
+ <!-- 스케줄 목록 전체 검색 -->
+	<select id="selectAllschedule" resultMap="scheduleResultMap">
+		SELECT * FROM schedule
+	</select>
+	
+	 <!-- 스케줄 추가 -->
+	<insert id="insertTicket" parameterType="Ticket">
+		<selectKey keyProperty="ticNo" resultType="Integer" order="BEFORE">
+			SELECT ticket_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO ticket (tic_no, id, sch_no, tic_seatno)
+		VALUES
+		(ticket.SEQ.NEXTVAL, #{theNo}, #{movNo}, #{scNo}, #{ticseatno})
+	</insert>
+	
+	<!-- 티켓 검색 -->
+	<select id="selectticket" parameterType="String" resultMap="ticketResultMap">
+		SELECT *
+		FROM ticket WHERE tic_no = #{ticNo}
+	</select>
+	
+	 <!-- 티켓 전체 검색 -->
+	<select id="selectAllticket" resultMap="ticketResultMap">
+		SELECT * FROM ticket
+	</select>
+
+
+</mapper>

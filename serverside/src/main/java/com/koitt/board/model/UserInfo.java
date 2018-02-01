@@ -3,22 +3,26 @@ package com.koitt.board.model;
 import java.util.Set;
 
 public class UserInfo {
-	
-	private Integer id;					// 사용자 인덱스 (Primary Key)
-	private String email;				// 이메일
-	private String password;			// 비밀번호
-	private String name;				// 이름
-	private String avatar;				// 아바타 이미지 파일명
-	private Set<UserType> userTypes;	// ADMIN, USER
-	
-	public UserInfo() {}
 
-	public UserInfo(Integer id, String email, String password, String name, String avatar, Set<UserType> userTypes) {
+	private Integer id; // 사용자 인덱스 (Primary Key)
+	private String email; // 이메일
+	private String password; // 비밀번호
+	private String name; // 이름
+	private String avatar; // 아바타 이미지 파일명
+	private Integer cno; // 쿠폰
+	private Set<UserType> userTypes; // ADMIN, USER
+
+	public UserInfo() {
+	}
+
+	public UserInfo(Integer id, String email, String password, String name, String avatar, Integer cno,
+			Set<UserType> userTypes) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.avatar = avatar;
+		this.cno = cno;
 		this.userTypes = userTypes;
 	}
 
@@ -62,6 +66,14 @@ public class UserInfo {
 		this.avatar = avatar;
 	}
 
+	public Integer getCno() {
+		return cno;
+	}
+
+	public void setCno(Integer cno) {
+		this.cno = cno;
+	}
+
 	public Set<UserType> getUserTypes() {
 		return userTypes;
 	}
@@ -75,6 +87,7 @@ public class UserInfo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((avatar == null) ? 0 : avatar.hashCode());
+		result = prime * result + ((cno == null) ? 0 : cno.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -96,6 +109,11 @@ public class UserInfo {
 			if (other.avatar != null)
 				return false;
 		} else if (!avatar.equals(other.avatar))
+			return false;
+		if (cno == null) {
+			if (other.cno != null)
+				return false;
+		} else if (!cno.equals(other.cno))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -138,9 +156,12 @@ public class UserInfo {
 		builder.append(name);
 		builder.append(", avatar=");
 		builder.append(avatar);
+		builder.append(", cno=");
+		builder.append(cno);
 		builder.append(", userTypes=");
 		builder.append(userTypes);
 		builder.append("]");
 		return builder.toString();
 	}
+
 }

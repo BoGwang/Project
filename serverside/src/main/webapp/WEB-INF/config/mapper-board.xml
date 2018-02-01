@@ -9,9 +9,10 @@
 			SELECT board_seq.NEXTVAL no FROM DUAL
 		</selectKey>
 		INSERT INTO board (no, title, content, id, regdate, attachment)
-		VALUES (#{no}, #{title}, #{content}, #{id}, SYSDATE, #{attachment})
+		VALUES
+		(#{no}, #{title}, #{content}, #{id}, SYSDATE, #{attachment})
 	</insert>
-	
+
 	<resultMap type="Board" id="boardResultMap">
 		<id property="no" column="no" />
 		<result property="title" column="title" />
@@ -23,31 +24,38 @@
 		<result property="userInfo.name" column="name" />
 		<result property="userInfo.avatar" column="avatar" />
 	</resultMap>
-	
+
 	<select id="select" parameterType="String" resultMap="boardResultMap">
-		SELECT b.no, b.title, b.content, b.id, b.regdate, b.attachment, u.email, u.name, u.avatar
+		SELECT
+		b.no, b.title, b.content, b.id, b.regdate, b.attachment, u.email,
+		u.name, u.avatar
 		FROM user_info u, board b
-		WHERE b.id = u.id AND no = #{no}
+		WHERE b.id = u.id AND no =
+		#{no}
 	</select>
-	
+
 	<select id="selectAll" resultMap="boardResultMap">
-		SELECT b.no, b.title, b.content, b.id, b.regdate, b.attachment, u.email, u.name, u.avatar
+		SELECT b.no, b.title,
+		b.content, b.id, b.regdate, b.attachment, u.email, u.name, u.avatar
 		FROM user_info u, board b
 		WHERE b.id = u.id ORDER BY b.no DESC
 	</select>
-	
+
 	<select id="count" resultType="int">
-		SELECT COUNT(*) cnt FROM board WHERE 1=1
+		SELECT COUNT(*) cnt FROM board
+		WHERE 1=1
 	</select>
-	
+
 	<update id="update" parameterType="Board">
-		UPDATE board 
-		SET title = #{title}, content = #{content}, regdate = SYSDATE, attachment = #{attachment}
+		UPDATE board
+		SET title = #{title}, content = #{content}, regdate = SYSDATE, attachment
+		= #{attachment}
 		WHERE no = #{no}
 	</update>
-	
+
 	<delete id="delete" parameterType="String">
-		DELETE FROM board WHERE no = #{no}
+		DELETE FROM board WHERE no =
+		#{no}
 	</delete>
-	
+
 </mapper>

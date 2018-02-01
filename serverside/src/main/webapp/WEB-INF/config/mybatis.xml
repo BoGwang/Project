@@ -10,10 +10,13 @@
 	
 	<typeAliases>
 		<typeAlias type="com.koitt.board.model.Board" alias="Board"/>
-		<typeAlias type="com.koitt.board.model.Movie" alias= "Movie"/>
-		<typeAlias type="com.koitt.board.model.Reservation" alias= "Reservation" />
-		<typeAlias type="com.koitt.board.model.Coupon" alias= "Coupon" />
 		<typeAlias type="com.koitt.board.model.UserInfo" alias="UserInfo"/>
 		<typeAlias type="com.koitt.board.model.UserType" alias="UserType"/>
+		<typeAlias type="com.koitt.board.model.Movie" alias="Movie"/>
+		<typeAlias type="com.koitt.board.model.Screen" alias="Screen"/>
+		<typeAlias type="com.koitt.board.model.Ticket" alias="Ticket"/>
+		<typeAlias type="com.koitt.board.model.Theater" alias="Theater"/>
+		<typeAlias type="com.koitt.board.model.Schedule" alias= "Schedule"/>
+		<typeAlias type="com.koitt.board.model.Coupon" alias= "Coupon" />
 	</typeAliases>
 </configuration>

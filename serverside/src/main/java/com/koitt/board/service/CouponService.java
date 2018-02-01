@@ -8,18 +8,14 @@ import com.koitt.board.model.Movie;
 
 public interface CouponService {
 	
-	// 쿠폰 번호를 1 증가하고 쿠폰을 등록한다.
-	public void newCoupon(Coupon coupon) throws CommonException;
 	
-	// 영화 하나를 가져온다.
+	// 쿠폰 하나를 가져온다.
 	public Coupon detail(String cno) throws CommonException;
 	
 	// 영화 전체를 가져온다.
 	public List<Coupon> list() throws CommonException;
 	
-	// 영화 개수를 가져온다.
-	public int count() throws CommonException;
 	
-	
+
 
 }

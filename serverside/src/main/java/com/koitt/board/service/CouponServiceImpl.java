@@ -19,11 +19,6 @@ public class CouponServiceImpl implements CouponService {
 
 	public CouponServiceImpl() {}
 
-	@Override
-	public void newCoupon(Coupon coupon) throws CommonException {
-		// DB에 저장
-		dao.insert(coupon);
-	}
 
 	@Override
 	public Coupon detail(String cno) throws CommonException {
@@ -33,11 +28,6 @@ public class CouponServiceImpl implements CouponService {
 	@Override
 	public List<Coupon> list() throws CommonException {
 		return dao.selectAll();
-	}
-
-	@Override
-	public int count() throws CommonException {
-		return dao.couponCount();
 	}
 
 }
