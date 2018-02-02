@@ -70,7 +70,7 @@ public class ScheduleWebController {
 		logger.debug(list);
 
 		model.addAttribute("list", list);
-		return "list";
+		return "schedule-list";
 	}
 
 	// 스케줄 목록 화면
@@ -83,20 +83,20 @@ public class ScheduleWebController {
 		logger.debug(list);
 
 		model.addAttribute("list", list);
-		return "list";
+		return "schedule-list";
 	}
 
 	// 티켓 목록 화면
 	@RequestMapping(value = "/ticketlist.do", method = RequestMethod.GET)
 	public String listTicket(Model model) throws CommonException {
-		List<Ticket> list = null;
+		List<Ticket> tlist = null;
 
-		list = scheduleService.Ticketlist();
+		tlist = scheduleService.Ticketlist();
 
-		logger.debug(list);
+		logger.debug(tlist);
 
-		model.addAttribute("list", list);
-		return "list";
+		model.addAttribute("tlist", tlist);
+		return "ticketList";
 	}
 
 	// 영화관 상세 화면
@@ -110,7 +110,7 @@ public class ScheduleWebController {
 
 		model.addAttribute("item", theater);
 
-		return "sdetail"; // /WEB-INF/views/detail.jsp 페이지로 이동
+		return "schedule-detail"; // /WEB-INF/views/detail.jsp 페이지로 이동
 	}
 
 	// 스케줄 작성 화면
@@ -123,7 +123,7 @@ public class ScheduleWebController {
 		model.addAttribute("id", item.getId());
 		model.addAttribute("email", item.getEmail());
 
-		return "snew";
+		return "schedule-new";
 	}
 
 	// 스케줄 상세 화면
@@ -137,7 +137,7 @@ public class ScheduleWebController {
 
 		model.addAttribute("item", schedule);
 
-		return "rdetail";
+		return "schedule-detail";
 	}
 	
 	// 티켓 상세 화면
@@ -151,7 +151,7 @@ public class ScheduleWebController {
 
 		model.addAttribute("item", ticket);
 
-		return "tdetail";
+		return "ticket-detail";
 	}
 
 	@RequestMapping(value = "/ticket.do", method = RequestMethod.GET)
@@ -187,7 +187,7 @@ public class ScheduleWebController {
 			scheduleService.newTicket(ticket);
 
 		}
-		return "redirect:list.do";
+		return "redirect:ticketlist.do";
 
 	}
 

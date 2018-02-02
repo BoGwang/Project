@@ -1,7 +1,9 @@
 package com.koitt.board.service;
 
+import java.util.List;
+
 import com.koitt.board.model.CommonException;
-import com.koitt.board.model.Movie;
+import com.koitt.board.model.Coupon;
 import com.koitt.board.model.UserInfo;
 
 public interface UserInfoService {
@@ -29,4 +31,11 @@ public interface UserInfoService {
 	// 사용자의 email 값을 이용하여 비밀번호를 불러온 다음, 입력한 비밀번호와 비교
 	boolean isPasswordMatched(String email, String rawPassword) throws CommonException;
 
+	//쿠폰
+   public abstract int insertCoupon(Coupon coupon) throws CommonException;
+   
+   // 쿠폰 디테일
+   public List<Coupon> selectCoupondetail(Integer id) throws CommonException;
+
+   
 }

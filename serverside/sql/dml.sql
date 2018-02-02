@@ -23,27 +23,18 @@ VALUES (2, 2);
 
 
 
----------------------------------
-INSERT INTO theater VALUES(theater_seq.NEXTVAL,'가산시네마');
-INSERT INTO theater VALUES(theater_seq.NEXTVAL,'용산시네마');
-INSERT INTO theater VALUES(theater_seq.NEXTVAL,'신촌시네마');
-INSERT INTO theater VALUES(theater_seq.NEXTVAL,'홍대시네마');
-INSERT INTO theater VALUES(theater_seq.NEXTVAL,'연신내시네마');
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO movie VALUES(movie_seq.NEXTVAL , '1987','가즈아',NULL,1,'13:00');
-INSERT INTO movie VALUES(movie_seq.NEXTVAL, '주문은 토끼입니까?','덕후후후후후후',NULL,2,'15:00');
-INSERT INTO movie VALUES(movie_seq.NEXTVAL, '위대한 쇼맨','불가능한 꿈, 그 이상의 쇼!','마이클 그레이시',NULL,,3,'17:00');
-INSERT INTO movie VALUES(movie_seq.NEXTVAL, '극장판 포켓몬스터 너로 정했다!','잡히기 싫은데 납치당하는 스토리',NULL,4,'18:00');
+INSERT INTO movie VALUES(movie_seq.NEXTVAL , '1987','가즈아','장준환',NULL);
+INSERT INTO movie VALUES(movie_seq.NEXTVAL, '코코','뮤지션 꿈꾸는 아이','리 언크리치', NULL);
+INSERT INTO movie VALUES(movie_seq.NEXTVAL, '위대한 쇼맨','불가능한 꿈, 그 이상의 쇼!','마이클 그레이시', NULL);
+INSERT INTO movie VALUES(movie_seq.NEXTVAL, '그것만이 내 세상','웰터급 동양 챔피언','최성현', NULL);
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 1, SYSDATE, '13:00','15:32','가산 시네마');
-INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 2, SYSDATE, '16:00','17:40','용산 시네마');
-INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 3, SYSDATE, '18:00','19:20','신촌 시네마');
-INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 4, SYSDATE, '21:00','23:00','홍대 시네마');
 
 -------------------------------------------------------------------------------------------------------------------
 INSERT INTO board VALUES(board_seq.NEXTVAL, 'TITLE1', 'CONTENT-1', 1, SYSDATE, NULL);
@@ -58,16 +49,30 @@ INSERT INTO board VALUES(board_seq.NEXTVAL, 'TITLE9', 'CONTENT-9', 1, SYSDATE, N
 INSERT INTO board VALUES(board_seq.NEXTVAL, 'TITLE10', 'CONTENT-10', 1, SYSDATE, NULL);
 
 -------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/*영화 감독 */
 
-INSERT INTO director VALUES(director_seq.nextval,'장준환');
-INSERT INTO director VALUES(director_seq.nextval,'리 언크리치');
-INSERT INTO director VALUES(director_seq.nextval,'김용화	');
-INSERT INTO director VALUES(director_seq.nextval,'마이클 그레이시');
-INSERT INTO director VALUES(director_seq.nextval,'리처드 클라우스');
-INSERT INTO director VALUES(director_seq.nextval,'하시모토 히로유키');
-INSERT INTO director VALUES(director_seq.nextval,'웨스 볼');
+INSERT INTO theater VALUES (theater_seq.NEXTVAL, '가산시네마');
+INSERT INTO theater VALUES (theater_seq.NEXTVAL, '용산시네마');
+INSERT INTO theater VALUES (theater_seq.NEXTVAL, '신촌시네마');
+INSERT INTO theater VALUES (theater_seq.NEXTVAL, '연신내시네마');
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*상영관 */
+INSERT INTO screen VALUES (screen_seq.NEXTVAL, 1, '2D 상영관', 4,8);
+INSERT INTO screen VALUES (screen_seq.NEXTVAL, 2, '3D 상영관', 4,8);
+INSERT INTO screen VALUES (screen_seq.NEXTVAL, 3, '4DX 상영관', 4,8);
+INSERT INTO screen VALUES (screen_seq.NEXTVAL, 4, '2D 상영관', 4,8);
+
+
+
+INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 1, 1, '13:00');
+INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 2, 2, '15:00');
+INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 3, 3, '17:00');
+INSERT INTO schedule VALUES (schedule_seq.NEXTVAL, 4, 4, '18:00');
+
+
 
 
 

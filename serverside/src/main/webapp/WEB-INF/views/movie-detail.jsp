@@ -13,28 +13,23 @@
 	<tr>
 		<!-- 제목 -->
 		<td>제목</td>
-		<td colspan="3">${ item.movietitle }
+		<td colspan="3">${ mlist.movietitle }
 	</tr>
 	<tr>
 		<!-- 줄거리 -->
 		<td>줄거리</td>
-		<td colspan="3">${ item.moviecontent }</td>
+		<td colspan="3">${ mlist.moviecontent }</td>
 	</tr>
 	<tr>
 		<!-- 영화 감독 -->
 		<td>감독</td>
-		<td>${ item.moviedirector }</td>
-	</tr>
-	<tr>
-		<!--  상영 시간 -->
-		<td>사영 시간</td>
-		<td>${ item.movieruntime }</td>
+		<td>${ mlist.moviedirector }</td>
 	</tr>
 	<c:if test="${ !empty filename }">
 		<dt>영화포스터</dt>
 		<dd>
 			<a
-				href="<c:url value='/movie/download.do?filename=${ item.movieposter }'/>">${ filename }</a>
+				href="<c:url value='/movie/download.do?filename=${ mlist.movieposter }'/>">${ filename }</a>
 		</dd>
 	</c:if>
 
@@ -45,8 +40,9 @@
 
 <a href="<c:url value= '/schedule/schedulelist.do'/> ">스케줄 확인하기</a>
 <a href="<c:url value='/movie/movielist.do'/>">영화 목록으로 이동</a>
+	<a href="<c:url value='/movie/movieremove.do?movieNo=${ mlist.movieNo }'/>">삭제하기</a>
 <a
-	href="<c:url value='/movie/moviemodify.do?movieNo=${ item.movieNo }'/>">영화
+	href="<c:url value='/movie/moviemodify.do?movieNo=${ mlist.movieNo }'/>">영화
 	수정하기</a>
 
 </html>

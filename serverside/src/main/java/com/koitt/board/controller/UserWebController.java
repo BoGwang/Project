@@ -3,6 +3,7 @@ package com.koitt.board.controller;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +16,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.koitt.board.model.CommonException;
+import com.koitt.board.model.Coupon;
 import com.koitt.board.model.UserInfo;
 import com.koitt.board.service.FileService;
 import com.koitt.board.service.UserInfoService;
@@ -41,9 +45,9 @@ public class UserWebController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homePage(Model model) {
-		
+
 		String email = this.getPrincipal();
-		
+
 		if (email != null && !email.trim().isEmpty()) {
 			UserInfo item = userInfoService.detail(email);
 			model.addAttribute("userInfo", item);
@@ -57,7 +61,7 @@ public class UserWebController {
 		return "user/login";
 	}
 
-	@RequestMapping(value = "/logout" , method = RequestMethod.GET)
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -86,12 +90,8 @@ public class UserWebController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String newUser(HttpServletRequest request,
-			String email,
-			String password,
-			String name,
-			@RequestParam("avatar") MultipartFile avatar)
-					throws CommonException, Exception {
+	public String newUser(HttpServletRequest request, String email, String password, String name,
+			@RequestParam("avatar") MultipartFile avatar) throws CommonException, Exception {
 
 		UserInfo user = new UserInfo();
 		user.setEmail(email);
@@ -115,9 +115,7 @@ public class UserWebController {
 			int idx = originalName.lastIndexOf(".");
 			String fileName = originalName.substring(0, idx);
 			String ext = originalName.substring(idx, originalName.length());
-			String uploadFilename = fileName
-					+ Long.toHexString(System.currentTimeMillis())
-					+ ext;
+			String uploadFilename = fileName + Long.toHexString(System.currentTimeMillis()) + ext;
 			avatar.transferTo(new File(path, uploadFilename));
 			uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
 			user.setAvatar(uploadFilename);
@@ -128,18 +126,19 @@ public class UserWebController {
 		return "redirect:login";
 	}
 
-	@RequestMapping(value = "/user/setting" , method = RequestMethod.GET)
+	@RequestMapping(value = "/user/setting", method = RequestMethod.GET)
 	public String setting() {
 		return "user/setting";
 	}
 
-	@RequestMapping(value = "/user/delete" , method = RequestMethod.GET)
+	@RequestMapping(value = "/user/delete", method = RequestMethod.GET)
 	public String delete() {
 		return "user/delete";
 	}
 
-	@RequestMapping(value = "/user/delete" , method = RequestMethod.POST)
-	public String delete(HttpServletRequest request, String password) throws CommonException, UnsupportedEncodingException {
+	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+	public String delete(HttpServletRequest request, String password)
+			throws CommonException, UnsupportedEncodingException {
 		String email = this.getPrincipal();
 		String filename = userInfoService.delete(email, password);
 		if (filename != null && !filename.trim().isEmpty()) {
@@ -165,13 +164,8 @@ public class UserWebController {
 
 	// 사용자 수정 후, 사용자 설정 화면으로 이동
 	@RequestMapping(value = "/user/modify", method = RequestMethod.POST)
-	public String modify(HttpServletRequest request,
-			Integer id,
-			String oldPassword,
-			String newPassword,
-			String name,
-			@RequestParam("avatar") MultipartFile avatar)
-					throws CommonException,Exception {
+	public String modify(HttpServletRequest request, Integer id, String oldPassword, String newPassword, String name,
+			@RequestParam("avatar") MultipartFile avatar) throws CommonException, Exception {
 
 		// 기존 비밀번호 검사 후 수정할지 결정
 		boolean isMatched = userInfoService.isPasswordMatched(id, oldPassword);
@@ -192,9 +186,7 @@ public class UserWebController {
 			int idx = originalName.lastIndexOf(".");
 			String fname = originalName.substring(0, idx);
 			String ext = originalName.substring(idx, originalName.length());
-			String uploadFilename = fname
-					+ Long.toHexString(System.currentTimeMillis())
-					+ ext;
+			String uploadFilename = fname + Long.toHexString(System.currentTimeMillis()) + ext;
 			avatar.transferTo(new File(path, uploadFilename));
 			uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
 			user.setAvatar(uploadFilename);
@@ -216,11 +208,44 @@ public class UserWebController {
 
 		if (principal instanceof UserDetails) {
 			username = ((UserDetails) principal).getUsername();
-		}
-		else {
+		} else {
 			username = principal.toString();
 		}
 
 		return username;
+	}
+	// 쿠폰 받는 화면
+	@RequestMapping(value = "/couponnew.do", method = RequestMethod.GET)
+	public String insertCoupon(Model model) {
+		
+		String id = this.getPrincipal();
+		UserInfo item = userInfoService.detail(id);
+		
+		model.addAttribute("id", item.getId());
+		
+		return "coupon-new";
+	}
+
+	// 쿠폰추가하기
+	@RequestMapping(value = "/couponnew.do", method = RequestMethod.POST)
+	public String insertCoupon(@ModelAttribute Coupon coupon, HttpServletRequest request, Integer id, Integer cno,
+			String sale) throws CommonException, Exception {
+
+	   UserInfo user = new UserInfo();
+		user.setId(id);
+		coupon.setCno(cno);
+		coupon.setSale(sale);
+		
+		
+		return "redirect:coupon-list.do";
+	}
+
+	// 타일즈 안타는 쿠폰팝업창
+	@RequestMapping(value = "/coupon-list.do", method = RequestMethod.GET)
+	public String getCouponList( Model model, @RequestParam("id") Integer id) {
+		List<Coupon> clist = userInfoService.selectCoupondetail(id);
+		model.addAttribute("coupon_list", clist);
+		
+		return "/WEB-INF/view/admin/coupon_list.jsp";
 	}
 }

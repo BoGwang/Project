@@ -1,6 +1,7 @@
 package com.koitt.board.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,11 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.koitt.board.dao.BoardDao;
-import com.koitt.board.dao.MovieDao;
 import com.koitt.board.dao.UserInfoDao;
 import com.koitt.board.model.Board;
 import com.koitt.board.model.CommonException;
-import com.koitt.board.model.Movie;
+import com.koitt.board.model.Coupon;
 import com.koitt.board.model.UserInfo;
 import com.koitt.board.model.UserType;
 import com.koitt.board.model.UserTypeId;
@@ -120,6 +120,16 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return encoder.matches(rawPassword, userInfo.getPassword());
 	}
 	
+	public int insertCoupon(Coupon coupon){
+		//쿠폰발행
+		int i = userInfoDao.insertCoupon(coupon);
+		return i;
+	}
+	
+	@Override
+	public List<Coupon> selectCoupondetail(Integer id){
+		return userInfoDao.selectCoupondetail(id);
+	}
 
 
 

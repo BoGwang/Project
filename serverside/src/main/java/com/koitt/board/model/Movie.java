@@ -5,22 +5,21 @@ public class Movie {
 	private Integer movieNo;
 	private String movietitle;
 	private String moviecontent;
-	private String movieposter;
-	private Integer movieruntime;
+	private Integer id;
 	private String moviedirector;
+	private String movieposter;
 
 	public Movie() {
 	}
 
-	public Movie(Integer movieNo, String movietitle, String moviecontent, String movieposter, Integer movieruntime,
-			String moviedirector) {
-		super();
+	public Movie(Integer movieNo, String movietitle, String moviecontent, Integer id, String moviedirector,
+			String movieposter) {
 		this.movieNo = movieNo;
 		this.movietitle = movietitle;
 		this.moviecontent = moviecontent;
-		this.movieposter = movieposter;
-		this.movieruntime = movieruntime;
+		this.id = id;
 		this.moviedirector = moviedirector;
+		this.movieposter = movieposter;
 	}
 
 	public Integer getMovieNo() {
@@ -47,20 +46,12 @@ public class Movie {
 		this.moviecontent = moviecontent;
 	}
 
-	public String getMovieposter() {
-		return movieposter;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setMovieposter(String movieposter) {
-		this.movieposter = movieposter;
-	}
-
-	public Integer getMovieruntime() {
-		return movieruntime;
-	}
-
-	public void setMovieruntime(Integer movieruntime) {
-		this.movieruntime = movieruntime;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getMoviedirector() {
@@ -71,15 +62,23 @@ public class Movie {
 		this.moviedirector = moviedirector;
 	}
 
+	public String getMovieposter() {
+		return movieposter;
+	}
+
+	public void setMovieposter(String movieposter) {
+		this.movieposter = movieposter;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((movieNo == null) ? 0 : movieNo.hashCode());
 		result = prime * result + ((moviecontent == null) ? 0 : moviecontent.hashCode());
 		result = prime * result + ((moviedirector == null) ? 0 : moviedirector.hashCode());
 		result = prime * result + ((movieposter == null) ? 0 : movieposter.hashCode());
-		result = prime * result + ((movieruntime == null) ? 0 : movieruntime.hashCode());
 		result = prime * result + ((movietitle == null) ? 0 : movietitle.hashCode());
 		return result;
 	}
@@ -93,6 +92,11 @@ public class Movie {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie other = (Movie) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (movieNo == null) {
 			if (other.movieNo != null)
 				return false;
@@ -113,11 +117,6 @@ public class Movie {
 				return false;
 		} else if (!movieposter.equals(other.movieposter))
 			return false;
-		if (movieruntime == null) {
-			if (other.movieruntime != null)
-				return false;
-		} else if (!movieruntime.equals(other.movieruntime))
-			return false;
 		if (movietitle == null) {
 			if (other.movietitle != null)
 				return false;
@@ -135,12 +134,12 @@ public class Movie {
 		builder.append(movietitle);
 		builder.append(", moviecontent=");
 		builder.append(moviecontent);
-		builder.append(", movieposter=");
-		builder.append(movieposter);
-		builder.append(", movieruntime=");
-		builder.append(movieruntime);
+		builder.append(", id=");
+		builder.append(id);
 		builder.append(", moviedirector=");
 		builder.append(moviedirector);
+		builder.append(", movieposter=");
+		builder.append(movieposter);
 		builder.append("]");
 		return builder.toString();
 	}

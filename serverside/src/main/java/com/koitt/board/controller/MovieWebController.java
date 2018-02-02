@@ -54,13 +54,13 @@ public class MovieWebController {
 	// 영화 목록 화면
 	@RequestMapping(value = "/movielist.do", method = RequestMethod.GET)
 	public String list(Model model) throws CommonException {
-		List<Movie> movielist = null;
+		List<Movie> mlist = null;
 
-		movielist = movieService.listAll();
+		mlist = movieService.listAll();
 
-		logger.debug(movielist);
+		logger.debug(mlist);
 
-		model.addAttribute("movielist", movielist);
+		model.addAttribute("mlist", mlist);
 		return "movie-list";
 	}
 
@@ -78,7 +78,7 @@ public class MovieWebController {
 			filename = URLDecoder.decode(filename, "UTF-8");
 		}
 
-		model.addAttribute("item", movie);
+		model.addAttribute("mlist", movie);
 		model.addAttribute("filename", filename);
 
 		return "movie-detail"; // /WEB-INF/views/detail.jsp 페이지로 이동
@@ -89,26 +89,25 @@ public class MovieWebController {
 	public String newMovie(Model model) {
 
 		String email = this.getPrincipal();
-		UserInfo item = userInfoService.detail(email);
+		UserInfo movie = userInfoService.detail(email);
 
-		model.addAttribute("id", item.getId());
-		model.addAttribute("email", item.getEmail());
+		model.addAttribute("id", movie.getId());
+		model.addAttribute("email", movie.getEmail());
 
 		return "movie-new";
 	}
 
 	// 영화 작성 후, 영화 목록 화면으로 이동
 	@RequestMapping(value = "/movienew.do", method = RequestMethod.POST)
-	public String newMovie(HttpServletRequest request, Integer movieNo, String movietitle, String moviecontent,
-			String moviedirector, Integer movieruntime, @RequestParam("movieposter") MultipartFile movieposter)
+	public String newMovie(HttpServletRequest request, Integer id, String movietitle, String moviecontent,
+			String moviedirector, @RequestParam("movieposter") MultipartFile movieposter)
 			throws CommonException, Exception {
 
 		Movie movie = new Movie();
+		movie.setId(id);
 		movie.setMoviedirector(moviedirector);
-		movie.setMovieNo(movieNo);
 		movie.setMovietitle(movietitle);
 		movie.setMoviecontent(moviecontent);
-		movie.setMovieruntime(movieruntime);
 
 		// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
@@ -135,49 +134,59 @@ public class MovieWebController {
 
 		movieService.newMovie(movie);
 
-		return "redirect:movie-list.do";
+		return "redirect:movielist.do";
 	}
 
 	// 글 수정하기 화면
-	@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/moviemodify.do", method = RequestMethod.GET)
 	public String modify(Model model, @RequestParam(value = "movieNo", required = true) String movieNo)
 			throws CommonException {
 
-		Movie item = null;
+		Movie mlist = null;
 
-		item = movieService.detail(movieNo);
+		mlist = movieService.detail(movieNo);
 
-		model.addAttribute("item", item);
+		model.addAttribute("mlist", mlist);
 
 		return "movie-modify";
 	}
-	
+
+	// 글 삭제 확인 화면
+	@RequestMapping(value = "/movieremove.do", method = RequestMethod.GET)
+	public String removeConfirm(Model model, @RequestParam(value = "movieNo", required = true) String movieNo) {
+
+		model.addAttribute("movieNo", movieNo);
+
+		return "movie-remove";
+	}
+
 	// 글 삭제 후, 글 목록 화면으로 이동
-	@RequestMapping(value = "/remove.do", method = RequestMethod.GET)
-	public String remove(HttpServletRequest request,
-			@RequestParam(value = "movieNo", required = true) String movieNo
-			)
-					throws CommonException, UnsupportedEncodingException {								
+	@RequestMapping(value = "/movieremove.do", method = RequestMethod.POST)
+	public String remove(HttpServletRequest request, @RequestParam(value = "movieNo", required = true) String movieNo)
+			throws CommonException, UnsupportedEncodingException {
+
 		String filename = movieService.remove(movieNo);
 		if (filename != null && !filename.trim().isEmpty()) {
 			fileService.remove(request, UPLOAD_FOLDER, filename);
 		}
-		return "redirect:movie-list.do";
+		return "redirect:movielist.do";
 	}
 
-
 	// 글 수정 후, 글 목록 화면으로 이동
-	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-	public String modify(HttpServletRequest request, Integer movieNo, String movietitle, String moviecontent,
-			String moviedirector, Integer movieruntime, @RequestParam("movieposter") MultipartFile movieposter,
-			String password) throws CommonException, Exception {
+	@RequestMapping(value = "/moviemodify.do", method = RequestMethod.POST)
+	public String modify(HttpServletRequest request, 
+			Integer movieNo, 
+			String movietitle, 
+			String moviecontent,
+			String moviedirector,
+			@RequestParam("movieposter") MultipartFile movieposter, String password)
+			throws CommonException, Exception {
 
 		Movie movie = new Movie();
 		movie.setMovieNo(movieNo);
 		movie.setMovietitle(movietitle);
 		movie.setMoviecontent(moviecontent);
 		movie.setMoviedirector(moviedirector);
-		movie.setMovieruntime(movieruntime);
 
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
 		String originalName = movieposter.getOriginalFilename();
@@ -198,7 +207,7 @@ public class MovieWebController {
 			fileService.remove(request, UPLOAD_FOLDER, newFilename);
 		}
 
-		return "redirect:movie-list.do";
+		return "redirect:movielist.do";
 	}
 
 	// 파일 내려받기

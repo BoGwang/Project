@@ -12,26 +12,27 @@
 	<form action="<c:url value='/movie/moviemodify.do'/>" method="post"
 		enctype="multipart/form-data">
 		<div>
-			<label>번호 ${ item.movieNo }</label>
+			<label>번호 ${ mlist.movieNo }</label>
 		</div>
 		<div>
 			<label>영화 제목 <input type="text" name="movietitle"
-				value="${ item.movietitle }"></label>
+				value="${ mlist.movietitle }"></label>
 		</div>
 		<div>
-			<label>내용 <textarea name="mcontent">${ item.mcontent }</textarea></label>
+			<label>내용 <textarea name="moviecontent">${ mlist.moviecontent }</textarea></label>
 		</div>
 		<div>
 			<label>감독 <input type="text" name="moviedirector"
-				value="${ item.moviedirector }"></label>
+				value="${ mlist.moviedirector }"></label>
 		</div>
 		<div>
 			<label>첨부파일 <input type="file" name="movieposter"
 				multiple="multiple"></label>
 		</div>
-		<input type="hidden" name="movieNo" value="${ item.movieNo }"> <input
+		<input type="hidden" name="movieNo" value="${ mlist.movieNo }"> <input
 			type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		<input type="submit"> <input type="reset"> <a
+		<input type="submit"> 
+		<input type="reset"> <a
 			href="<c:url value='/movie/movielist.do'/>">영화 목록으로 이동</a>
 	</form>
 </body>

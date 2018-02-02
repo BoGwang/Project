@@ -61,8 +61,6 @@ CREATE TABLE  theater (
 );
 
 
-
-
 /*상영관*/
 CREATE TABLE screen (
   sc_no NUMBER NOT NULL, /* 상영관 번호 */
@@ -74,12 +72,12 @@ CREATE TABLE screen (
   CONSTRAINT fk_screen FOREIGN KEY (the_no) REFERENCES theater(the_no)
 );
 
+
 CREATE TABLE movie (
     mov_no NUMBER NOT NULL, /* 영화 번호*/
-    mov_title VARCHAR2(20) NOT NULL, /*영화 제목*/
-    mov_content VARCHAR2(100) NOT NULL, /*내용*/
+    mov_title VARCHAR2(400) NOT NULL, /*영화 제목*/
+    mov_content VARCHAR2(200) NOT NULL, /*내용*/
     mov_director VARCHAR2(100) NOT NULL, /*감독 */
-    mov_runtime NUMBER NOT NULL, /*상영 시간*/
     mov_poster VARCHAR2(300),  /*포스터*/
     CONSTRAINT pk_movie PRIMARY KEY(mov_no)
 
@@ -90,12 +88,10 @@ CREATE TABLE movie (
 /* 스케줄 */
 CREATE TABLE schedule (
    sch_no NUMBER NOT NULL, /* 스케줄 번호*/
-   the_no NUMBER NOT NULL, /*극장번호*/
    mov_no NUMBER NOT NULL, /* 영화 번호*/
    sc_no NUMBER NOT NULL, /*상영관 번호*/
    sch_starttime CHAR(8) NOT NULL, /* 시작 시간*/
    CONSTRAINT pk_schedule PRIMARY KEY(sch_no),
-   CONSTRAINT fk_schedule_the FOREIGN KEY (the_no) REFERENCES theater(the_no),
    CONSTRAINT fk_schedule_mov FOREIGN KEY (mov_no) REFERENCES movie( mov_no),
     CONSTRAINT fk_schedule_scr FOREIGN KEY (sc_no) REFERENCES screen(sc_no)
 );

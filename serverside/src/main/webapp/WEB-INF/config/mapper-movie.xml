@@ -38,7 +38,7 @@
 	</update>
 
 	<delete id="delete" parameterType="String">
-		DELETE FROM movie WHERE movie_no = #{movieNo}
+		DELETE FROM movie WHERE mov_no = #{movieNo}
 	</delete>
 
 

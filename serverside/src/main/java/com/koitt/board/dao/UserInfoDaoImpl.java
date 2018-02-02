@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.koitt.board.model.CommonException;
+import com.koitt.board.model.Coupon;
 import com.koitt.board.model.UserInfo;
 
 @Repository
@@ -87,6 +88,16 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			throw new CommonException("E35: 사용자 삭제 실패");
 		}
 
+	}
+	
+	@Override
+	public int insertCoupon(Coupon coupon){
+		int i = sqlSession.insert(MAPPER_NAMESPACE+".insertCoupon", coupon);
+		return i;
+	}
+	
+	public List<Coupon> selectCoupondetail(Integer id){
+		return sqlSession.selectList(MAPPER_NAMESPACE+".selectCoupondetail", id);
 	}
 
 	@Override

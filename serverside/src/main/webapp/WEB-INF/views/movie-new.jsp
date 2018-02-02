@@ -19,7 +19,7 @@
 			<label>내용 <textarea name="moviecontent"></textarea></label>
 		</div>
 		<div>
-			<label>첨부파일 <input type="file" name="mposter" multiple="multiple"></label>
+			<label>첨부파일 <input type="file" name="movieposter" multiple="multiple"></label>
 		</div>
 		<input type="hidden" name="id" value="${ id }">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
