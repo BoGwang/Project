@@ -41,8 +41,7 @@
 <a href="<c:url value= '/schedule/schedulelist.do'/> ">스케줄 확인하기</a>
 <a href="<c:url value='/movie/movielist.do'/>">영화 목록으로 이동</a>
 	<a href="<c:url value='/movie/movieremove.do?movieNo=${ mlist.movieNo }'/>">삭제하기</a>
-<a
-	href="<c:url value='/movie/moviemodify.do?movieNo=${ mlist.movieNo }'/>">영화
+<a 	href="<c:url value='/movie/moviemodify.do?movieNo=${ mlist.movieNo }'/>">영화
 	수정하기</a>
 
 </html>
