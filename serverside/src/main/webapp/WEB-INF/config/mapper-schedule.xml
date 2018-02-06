@@ -12,7 +12,7 @@
 
 	<!-- 상영관 -->
 	<resultMap type="Screen" id="screenResultMap">
-		<id property="scNO" column="sc_no" />
+		<id property="scNo" column="sc_no" />
 		<result property="theNo" column="the_no" />
 		<result property="scname" column="sc_name" />
 		<result property="scline" column="sc_line" />
@@ -21,7 +21,7 @@
 
 	<!-- 티켓 == 예매랑 같은것 -->
 	<resultMap type="Ticket" id="ticketResultMap">
-		<id property="ticNO" column="tic_no" />
+		<id property="ticNo" column="tic_no" />
 		<result property="id" column="id" />
 		<result property="schNo" column="sch_no" />
 		<result property="ticseatno" column="tic_seatno" />
@@ -29,9 +29,8 @@
 
 	<!-- 스케줄 -->
 	<resultMap type="Schedule" id="scheduleResultMap">
-		<id property="schNO" column="sch_no" />
-		<result property="theNo" column="the_no" />
-		<result property="movNo" column="mov_no" />
+		<id property="schNo" column="sch_no" />
+		<result property="movieNo" column="mov_no" />
 		<result property="scNo" column="sc_no" />
 		<result property="schstarttime" column="sch_starttime" />
 	</resultMap>
@@ -91,9 +90,9 @@
 		<selectKey keyProperty="schNo" resultType="Integer" order="BEFORE">
 			SELECT schedule_seq.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO schedule (sch_no, the_no, mov_no, sc_no, sch_startime)
+		INSERT INTO schedule (sch_no, mov_no, sc_no, sch_startime)
 		VALUES
-		(schedule.SEQ.NEXTVAL, #{theNo}, #{movNo}, #{scNo}, #{schstarttime})
+		(schedule.SEQ.NEXTVAL, #{movieNo}, #{scNo}, #{schstarttime})
 	</insert>
 
 <!-- 스케줄 검색 -->
@@ -114,7 +113,7 @@
 		</selectKey>
 		INSERT INTO ticket (tic_no, id, sch_no, tic_seatno)
 		VALUES
-		(ticket.SEQ.NEXTVAL, #{theNo}, #{movNo}, #{scNo}, #{ticseatno})
+		(ticket.SEQ.NEXTVAL, #{theNo}, #{movieNo}, #{scNo}, #{ticseatno})
 	</insert>
 	
 	<!-- 티켓 검색 -->

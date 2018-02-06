@@ -78,7 +78,7 @@ public class ScheduleWebController {
 		logger.debug(schlist);
 
 		model.addAttribute("schlist", schlist);
-		return "schedule-list";
+		return "scheduleList";
 	}
 
 	// 티켓 목록 화면
@@ -108,18 +108,7 @@ public class ScheduleWebController {
 		return "theater-detail"; // /WEB-INF/views/detail.jsp 페이지로 이동
 	}
 
-	// 스케줄 작성 화면
-	@RequestMapping(value = "/schedulenew.do", method = RequestMethod.GET)
-	public String newSchedule(Model model) {
 
-		String email = this.getPrincipal();
-		UserInfo item = userInfoService.detail(email);
-
-		model.addAttribute("id", item.getId());
-		model.addAttribute("email", item.getEmail());
-
-		return "schedule-list";
-	}
 
 	// 스케줄 상세 화면
 	@RequestMapping(value = "/scheduledetail.do", method = RequestMethod.GET)
@@ -157,13 +146,13 @@ public class ScheduleWebController {
 			model.addAttribute("movieNo", movieNo);
 			return "ticket";
 		}
-		return "login";
+		return "reservComplete";
 	}
 
 	@RequestMapping(value = "/ticket", method = RequestMethod.POST)
 	public String reserve(HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			Integer movieNo, Integer ticNo, Integer id, Integer scNo, Integer schNo, String ticSeatno, Integer theNo,
-			String scName) throws CommonException, Exception {
+			String scname) throws CommonException, Exception {
 
 		String email = this.getPrincipal();
 		Ticket ticket = new Ticket();
@@ -177,7 +166,7 @@ public class ScheduleWebController {
 			ticket.setTicSeatno(ticSeatno);
 			schedule.setScNo(scNo);
 			schedule.setMovieNo(movieNo);
-			schedule.setScName(scName);
+			schedule.setScname(scname);
 
 			scheduleService.newTicket(ticket);
 
@@ -186,13 +175,14 @@ public class ScheduleWebController {
 
 	}
 
+	//스케줄 작성
 	@RequestMapping(value = "/newschedule.do", method = RequestMethod.GET)
 	public String schedule(Model model, Integer movieNo) throws CommonException, UnsupportedEncodingException {
 		model.addAttribute("movieNo", movieNo);
-		return "redirect:schedulelist.do";
+		return "scheduleList";
 	}
 
-	@RequestMapping(value = "/schedule", method = RequestMethod.POST)
+	@RequestMapping(value = "/newschedule", method = RequestMethod.POST)
 	public String schedule(HttpServletRequest request, Integer movieNo, Integer theNo, Integer scNo,
 			String schstarttime) throws CommonException, UnsupportedEncodingException {
 

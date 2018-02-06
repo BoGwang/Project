@@ -88,6 +88,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public Ticket detailTicket(String ticNo) throws CommonException {
 		return dao.selectTicket(ticNo);
 	}
+	
+	@Override
+	public int getScheduleCount(Screen bas) {
+		return dao.selectScheduleCount(bas);
+	}
+	
 
 	// 스케줄 전체 가죠오기
 	@Override

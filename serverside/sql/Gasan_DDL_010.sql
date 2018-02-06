@@ -97,7 +97,7 @@ CREATE TABLE schedule (
 );
 
   
-  
+  SELECT * FROM 
 
 /* 영화 티켓 */
 CREATE TABLE ticket(
@@ -111,7 +111,7 @@ CREATE TABLE ticket(
  );
 
  
- 
+ SELECT * FROM schedule;
 
 
 

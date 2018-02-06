@@ -53,6 +53,9 @@ public interface ScheduleDao {
 	
 	// 상영관 하나 가져오기
 	public Screen selectScreen(String scNo) throws CommonException;
+	
+	//스케줄 하나 가져오기
+	public abstract int selectScheduleCount(Screen bas) throws CommonException;
 
 	//스크린
 	public abstract List<Screen> selectScreenListByNo(int theNo);

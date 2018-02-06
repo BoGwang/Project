@@ -8,9 +8,9 @@
 		<selectKey keyProperty="movieNo" resultType="Integer" order="BEFORE">
 			SELECT movie_seq.NEXTVAL  FROM DUAL
 		</selectKey>
-		INSERT INTO movie (mov_no, mov_title, mov_content, mov_director, mov_runtime, mov_poster)
+		INSERT INTO movie (mov_no, mov_title, mov_content, mov_director, mov_poster)
 		VALUES
-		(movie_SEQ.NEXTVAL, #{movietitle},  #{moviecontent}, #{moviedirector}, #{movieruntime}, #{movieposter})
+		(movie_SEQ.NEXTVAL, #{movietitle},  #{moviecontent}, #{moviedirector}, #{movieposter})
 	</insert>
 
 	<resultMap type="Movie" id="movieResultMap">
@@ -19,7 +19,6 @@
 		<result property="moviecontent" column="mov_content" />
 		<result property="movieposter" column="mov_poster" />
 		<result property="moviedirector" column="mov_director" />
-		<result property= "movieruntime" column="mov_runtime"/> 
 	</resultMap>
 
 	<select id="select" parameterType="String" resultMap="movieResultMap">
@@ -33,12 +32,13 @@
 
 	<update id="update" parameterType="Movie">
 		UPDATE movie
-		SET mov_title = #{movietitle},  mov_content = #{moviecontent}, mov_director = #{moviedirector}, movie_runtime = #{movieruntime}
+		SET mov_title = #{movietitle},  mov_content = #{moviecontent}, mov_director = #{moviedirector}
 		WHERE mov_no = #{movieNo}
 	</update>
 
 	<delete id="delete" parameterType="String">
-		DELETE FROM movie WHERE mov_no = #{movieNo}
+		DELETE FROM movie WHERE mov_no =
+		#{movieNo}
 	</delete>
 
 

@@ -5,8 +5,7 @@
 	src="<%=request.getContextPath()%>/script/jquery.js"></script>
 <script type="text/javascript">
 function goReservePage() {
-	window.location = "<%=request.getContextPath()%>
-	/schedule/ticket.do";
+	window.location = "<%=request.getContextPath()%>/schedule/ticket.do";
 	}
 </script>
 

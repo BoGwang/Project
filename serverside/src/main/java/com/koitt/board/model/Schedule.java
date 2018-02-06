@@ -8,23 +8,25 @@ public class Schedule implements Serializable {
 	private Integer movieNo;
 	private String movietitle;
 	private Integer scNo;
-	private String scName;
+	private String scname;
 	private Integer theNo;
 	private String movieposter;
+	private String schstarttime;
 
 	public Schedule() {
 	}
 
-	public Schedule(Integer schNo, Integer movieNo, String movietitle, Integer scNo, String scName, Integer theNo,
-			String movieposter) {
+	public Schedule(Integer schNo, Integer movieNo, String movietitle, Integer scNo, String scname, Integer theNo,
+			String movieposter, String schstarttime) {
 		super();
 		this.schNo = schNo;
 		this.movieNo = movieNo;
 		this.movietitle = movietitle;
 		this.scNo = scNo;
-		this.scName = scName;
+		this.scname = scname;
 		this.theNo = theNo;
 		this.movieposter = movieposter;
+		this.schstarttime = schstarttime;
 	}
 
 	public Integer getSchNo() {
@@ -59,12 +61,12 @@ public class Schedule implements Serializable {
 		this.scNo = scNo;
 	}
 
-	public String getScName() {
-		return scName;
+	public String getScname() {
+		return scname;
 	}
 
-	public void setScName(String scName) {
-		this.scName = scName;
+	public void setScname(String scname) {
+		this.scname = scname;
 	}
 
 	public Integer getTheNo() {
@@ -83,6 +85,14 @@ public class Schedule implements Serializable {
 		this.movieposter = movieposter;
 	}
 
+	public String getSchstarttime() {
+		return schstarttime;
+	}
+
+	public void setSchstarttime(String schstarttime) {
+		this.schstarttime = schstarttime;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,9 +100,10 @@ public class Schedule implements Serializable {
 		result = prime * result + ((movieNo == null) ? 0 : movieNo.hashCode());
 		result = prime * result + ((movieposter == null) ? 0 : movieposter.hashCode());
 		result = prime * result + ((movietitle == null) ? 0 : movietitle.hashCode());
-		result = prime * result + ((scName == null) ? 0 : scName.hashCode());
 		result = prime * result + ((scNo == null) ? 0 : scNo.hashCode());
 		result = prime * result + ((schNo == null) ? 0 : schNo.hashCode());
+		result = prime * result + ((schstarttime == null) ? 0 : schstarttime.hashCode());
+		result = prime * result + ((scname == null) ? 0 : scname.hashCode());
 		result = prime * result + ((theNo == null) ? 0 : theNo.hashCode());
 		return result;
 	}
@@ -121,11 +132,6 @@ public class Schedule implements Serializable {
 				return false;
 		} else if (!movietitle.equals(other.movietitle))
 			return false;
-		if (scName == null) {
-			if (other.scName != null)
-				return false;
-		} else if (!scName.equals(other.scName))
-			return false;
 		if (scNo == null) {
 			if (other.scNo != null)
 				return false;
@@ -135,6 +141,16 @@ public class Schedule implements Serializable {
 			if (other.schNo != null)
 				return false;
 		} else if (!schNo.equals(other.schNo))
+			return false;
+		if (schstarttime == null) {
+			if (other.schstarttime != null)
+				return false;
+		} else if (!schstarttime.equals(other.schstarttime))
+			return false;
+		if (scname == null) {
+			if (other.scname != null)
+				return false;
+		} else if (!scname.equals(other.scname))
 			return false;
 		if (theNo == null) {
 			if (other.theNo != null)
@@ -155,12 +171,14 @@ public class Schedule implements Serializable {
 		builder.append(movietitle);
 		builder.append(", scNo=");
 		builder.append(scNo);
-		builder.append(", scName=");
-		builder.append(scName);
+		builder.append(", scname=");
+		builder.append(scname);
 		builder.append(", theNo=");
 		builder.append(theNo);
 		builder.append(", movieposter=");
 		builder.append(movieposter);
+		builder.append(", schstarttime=");
+		builder.append(schstarttime);
 		builder.append("]");
 		return builder.toString();
 	}

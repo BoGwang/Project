@@ -103,17 +103,17 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
 	@Override
 	public List<Schedule> selectAllSchedule() throws CommonException {
-		List<Schedule> list = null;
+		List<Schedule> schlist = null;
 
 		try {
-			list = sqlSession.selectList(MAPPER_NAMESPACE + ".selectAllSchedule");
+			schlist = sqlSession.selectList(MAPPER_NAMESPACE + ".selectAllschedule");
 
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			throw new CommonException("E02: 스케줄 전체 검색 실패");
 		}
 
-		return list;
+		return schlist;
 	}
 
 	@Override
@@ -164,17 +164,17 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
 	@Override
 	public List<Ticket> selectAllTicket() throws CommonException {
-		List<Ticket> list = null;
+		List<Ticket> tlist = null;
 
 		try {
-			list = sqlSession.selectList(MAPPER_NAMESPACE + ".selectAllTicket");
+			tlist = sqlSession.selectList(MAPPER_NAMESPACE + ".selectAllTicket");
 
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			throw new CommonException("E02: 티켓 전체 검색 실패");
 		}
 
-		return list;
+		return tlist;
 	}
 
 	@Override
@@ -192,6 +192,13 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		return list;
 	}
 
+	
+	@Override
+	public int selectScheduleCount(Screen bas) {
+		return sqlSession.selectOne(MAPPER_NAMESPACE + "selectScheduleCount", bas);
+	}
+	
+	
 	@Override
 	public int insertScreen(int theNo, int count) {
 		int cnt = 0;
