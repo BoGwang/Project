@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/movie-schedule.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/movie-select.css">
+    <link rel="stylesheet" type="text/css" href="css/movie-register.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="jQuery-Radiobtn/zInput.js"></script>
+    <script>
+        $(function() {
+            $(".preserv-folded").hide();
+            $(".screen_box").hide();
+            setInterval("howMuch()", 100);
+        });
+
+        function submitTest() {
+            if($('.total-price').text() == "0") {
+                alert("표를 예매해주세요!");
+            }
+            else {
+                $('#reserv-form').submit();
+            }
+
+        }
+
+        function showSeat() {
+            $(".screen_box").show();
+        }
+
+        function howMuch() {
+            var adprice;
+            var tenprice;
+
+            var adult_index = $(".adult-seat-selected").length;
+            var teen_index = $(".teen-seat-selected").length;
+            $(".adult-count").text(adult_index);
+            adprice = adult_index * 8000;
+            $(".adult-price").text(adprice);
+
+            $(".teen-count").text(teen_index);
+            tenprice = teen_index * 6000;
+            $(".teen-price").text(tenprice);
+
+            $(".total-price").text(tenprice + adprice);
+        }
+
+        function selectedSeat(target) {
+            var age = $("input:radio[name=age]:checked").val();
+
+            var attachClass = age + "-seat-selected";
+
+            if ($(target).hasClass("adult-seat-selected") || $(target).hasClass("teen-seat-selected")) {
+                $(target).removeClass("adult-seat-selected");
+                $(target).removeClass("teen-seat-selected");
+                $(target).addClass(attachClass);
+            }
+            else if($(target).hasClass("already-selected")) {
+                $(target).removeClass("adult-seat-selected");
+                $(target).removeClass("teen-seat-selected");
+            } else {
+                $(target).addClass(attachClass);
+            }
+
+
+        }
+
+        function removeAll() {
+            $(".p0").removeClass("adult-seat-selected");
+            $(".p0").removeClass("teen-seat-selected");
+        }
+
+        function isBooked() {
+
+            var index;
+            for (var i = 0; i < 45; i++) {
+                if ($("a[value=1]")) {
+                    $("a[value=1]").addClass("already-selected");
+                }
+
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="main-header">
+        <div class="container">
+            <nav class="gnb">
+                <ul>
+                    <li class="nav-item">
+                        <a href="http://bogwang.dothome.co.kr/movie/movie.html" class="nav-link">
+                            영화
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://bogwang.dothome.co.kr/movie/login.html" class="nav-link">
+                            회원정보
+                        </a>
+                    </li>
+                    <li class="nav-item" id = "actvie">
+                        <a href="http://bogwang.dothome.co.kr/movie/service.html" class="nav-link">
+                            고객센터
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="sub-header">
+        <div class="container">
+            <div class="title">
+                <a href="#!">
+                    <h3>
+                        영화 스케줄 추가
+                    </h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="movie-schedule">
+    <form action="/movie/ticket" method="post" id="reserv-form">
+        <div class="calendar text-center">
+            <input type="radio" class="cal-radio" name="day" value="2018-01-13" id="jan-13" class="active" title="1관">
+            <input type="radio" class="cal-radio" name="day" value="2018-01-14" id="jan-14" title="2관">
+            <input type="radio" class="cal-radio" name="day" value="2018-01-15" id="jan-15" title="3관">
+            <input type="radio" class="cal-radio" name="day" value="2018-01-16" id="jan-16" title="4관">
+        </div>
+        <div class="theater-container">
+            <div class="preserv-folded">
+                <hr class="hr">
+                <div class="preserv-time">
+                    <ul>
+                        <li>
+                            <a href="#" onclick="showSeat();">
+                                <span class = "cine-time">
+                                                14:20
+                                                <span> ~ 15:50 </span>
+                                            </span>
+                                <div class="bar"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="showSeat();">
+                                <span class = "cine-time">
+                                                16:20
+                                                <span> ~ 17:50 </span>
+                                            </span>
+                                <div class="bar"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="showSeat();">
+                                <span class = "cine-time">
+                                                12:30
+                                                <span> ~ 14:00 </span>
+                                            </span>
+                                <div class="bar"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="showSeat();">
+                                <span class = "cine-time">
+                                                02:20
+                                                <span> ~ 03:50 </span>
+                                            </span>
+                                <div class="bar"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="seat-container">
+            <div class="screen_box">
+                <strong class="screen_tit">영화 목록</strong>
+                <div class="seat_Barea">
+                    <div class="seat_area" style="height: 184px; ">
+                        <ul>
+                            <li>
+                                <a href="#!">
+                                    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZjYyMGQ4ODgtY2Y5Ny00ODdhLWJiZTgtMDQ2OTAwMzM1NWMwXkEyXkFqcGdeQXVyNjQ3ODkxMjE@._V1_SY1000_CR0,0,699,1000_AL_.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#!">
+                                    <img src="https://upload.wikimedia.org/wikipedia/ko/thumb/d/d9/%EA%B7%B8%EA%B2%83%EB%A7%8C%EC%9D%B4_%EB%82%B4_%EC%84%B8%EC%83%81.jpg/250px-%EA%B7%B8%EA%B2%83%EB%A7%8C%EC%9D%B4_%EB%82%B4_%EC%84%B8%EC%83%81.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#!">
+                                    <img src="https://t1.daumcdn.net/news/201712/28/tvdaily/20171228162406313jtpt.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#!">
+                                    <img src="https://upload.wikimedia.org/wikipedia/ko/thumb/0/03/%EC%98%81%ED%99%94_%EC%BD%94%EC%BD%94.jpg/250px-%EC%98%81%ED%99%94_%EC%BD%94%EC%BD%94.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#!">
+                                    <img src="https://upload.wikimedia.org/wikipedia/ko/thumb/1/14/%EC%98%81%ED%99%94_%EB%B8%94%EB%9E%99_%ED%8C%AC%EC%84%9C.jpg/250px-%EC%98%81%ED%99%94_%EB%B8%94%EB%9E%99_%ED%8C%AC%EC%84%9C.jpg" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pay-container">
+                        <div class="button-area">
+                            <a href="#!"  class="reg-btn">확인하기</a>
+                            <a href="javascript:{}" onclick="removeAll();" class="reg-btn-reset">취소하기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<footer>
+    <div class="container">
+        <div class="address">
+            <h1>
+                금천구 가산디지털1로 186 가산동 서울특별시<br>
+                서울특별시 08502 대한민국
+            </h1>
+        </div>
+        <nav class="gnb">
+            <ul>
+                <li>
+                    <a href="http://bogwang.dothome.co.kr/movie/movie.html">
+                        영화
+                    </a>
+                </li>
+                <li class = "var">
+                    <p>|</p>
+                </li>
+                <li>
+                    <a href="http://bogwang.dothome.co.kr/movie/login.html">
+                        로그인
+                    </a>
+                </li>
+                <li class = "var">
+                    <p>|</p>
+                </li>
+                <li>
+                    <a href="http://bogwang.dothome.co.kr/movie/service.html">
+                        고객센터
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sns-area">
+            <ul>
+                <li class="facebook">
+                    <a href="#!">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="twitter">
+                    <a href="#!">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class = "instagram">
+                    <a href="#!">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="message">
+                    <a href="#!">
+                        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script>
+    $(".calendar").zInput();
+    $(".select-age").zInput();
+</script>
+<script src="bootstrap/js/jquery-1.12.4.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

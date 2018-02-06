@@ -1,0 +1,265 @@
+.seat_area {
+    position: relative;
+}
+
+.seat_tit {
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 22px;
+    text-align: left;
+    line-height: 22px;
+    font-size: 11px;
+    color: #2b2e33
+}
+
+.p0 {
+    position: absolute;
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: #848484;
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+    line-height: 23px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box
+}
+
+.adult-seat-selected {
+    background: #f7cac9;
+}
+
+.teen-seat-selected {
+    background: #92a8d1;
+}
+
+.already-selected {
+
+}
+
+.seat_Barea {
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 660px;
+    background : #f9f8f3;
+    height: 540px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box
+}
+
+.screen_box {
+    position: relative
+}
+
+.screen_box .screen_tit {
+    display: block;
+    margin-top: 50px;
+    background: lightgray;
+    line-height: 25px;
+    font-size: 20px;
+    color: #231f20;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic
+}
+
+.cal-radio {
+    display: none;
+}
+.select-age {
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+.age-radio:last-child {
+    margin-left: 40px;
+}
+.calendar .zInputWrapper {
+    border: 1px solid #000;
+    display: inline-block;
+}
+
+.select-age .zInputWrapper {
+    background-color: white;
+    padding: 4px;
+    max-width: 100%;
+    margin: 2px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.age-radio {
+    display: none;
+    background: white;
+}
+.calendar .zInput {
+    display: inline-block;
+    width: 130px;
+    height: 70px;
+    background: #ffffff;
+    display: inline-block;
+    text-align: center;
+    color: black;
+    font-size: 18px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+.calendar .zInput{}
+.select-age .zInput {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    margin: 4px;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    color: black;
+    border: #41297a 1px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    overflow: hidden;
+    font-weight: bold;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.zCheckbox {
+    color: #e74c3c;
+    border: #e74c3c 1px solid;
+}
+
+
+.select-age .zSelected {
+    color: white;
+    background-color: #41297a;
+}
+
+.zSelected.zCheckbox {
+    background-color: #e74c3c;
+}
+
+.theater-container h2 {
+    margin-left: 60px;
+    margin-top: 40px;
+}
+
+.theater-container h4 {
+    margin-left: 90px;
+}
+
+.movie-title {
+    display: inline;
+}
+
+.hr {
+    margin-top: 40px;
+    border: 0.3px solid lightgray;
+}
+
+.preserv-time {
+    padding-top: 50px;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preserv-time ul li {
+    margin: 25px;
+    display: inline-block;
+    background: #ffffff;
+    text-align: center;
+    width: 200px;
+    height: 100px;
+    border:1px solid #a7a7a7;
+}
+.preserv-time ul li:hover{
+    background: #eeeeee;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.preserv-time ul li:hover .cine-time{
+    color: #198591;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.preserv-time ul li:hover .cine-time sapn{
+    color: #198591;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.preserv-time ul li a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.cine-place {
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+.bar{
+    display: block;
+    height: 1px;
+    background: #a7a7a7;
+    width: 90px;
+    margin: 0 auto;
+
+}
+
+.cine-time {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 10px;
+}
+.cine-time span{
+}
+
+.cine-seat {
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.pay-container{
+    padding-top: 210px;
+}
+.pay-container ul li {
+    display: block;
+    margin-top: 20px;
+    margin-left: 40px;
+    width: 100%;
+    height: auto;
+}
