@@ -96,7 +96,7 @@
                 <constraint>
                   <height>85</height>
                   <width>10</width>
-                  <x>274</x>
+                  <x>284</x>
                   <y>99</y>
                 </constraint>
                 <sourceConnections>
@@ -146,7 +146,7 @@
                       <constraint>
                         <height>46</height>
                         <width>10</width>
-                        <x>521</x>
+                        <x>566</x>
                         <y>128</y>
                       </constraint>
                       <sourceConnections>
@@ -196,7 +196,7 @@
                             <constraint>
                               <height>30</height>
                               <width>10</width>
-                              <x>730</x>
+                              <x>817</x>
                               <y>134</y>
                             </constraint>
                             <sourceConnections>
@@ -240,7 +240,7 @@
                               <constraint>
                                 <height>602</height>
                                 <width>5</width>
-                                <x>735</x>
+                                <x>822</x>
                                 <y>20</y>
                               </constraint>
                               <sourceConnections/>
@@ -264,7 +264,7 @@
                                   <constraint>
                                     <height>30</height>
                                     <width>10</width>
-                                    <x>730</x>
+                                    <x>817</x>
                                     <y>301</y>
                                   </constraint>
                                   <sourceConnections>
@@ -297,7 +297,7 @@
                                         <constraint>
                                           <height>51</height>
                                           <width>10</width>
-                                          <x>521</x>
+                                          <x>566</x>
                                           <y>290</y>
                                         </constraint>
                                         <sourceConnections>
@@ -330,7 +330,7 @@
                                               <constraint>
                                                 <height>98</height>
                                                 <width>10</width>
-                                                <x>274</x>
+                                                <x>284</x>
                                                 <y>253</y>
                                               </constraint>
                                               <sourceConnections>
@@ -442,7 +442,7 @@
                                                 <constraint>
                                                   <height>602</height>
                                                   <width>5</width>
-                                                  <x>279</x>
+                                                  <x>289</x>
                                                   <y>20</y>
                                                 </constraint>
                                                 <sourceConnections/>
@@ -467,7 +467,7 @@
                                                     <constraint>
                                                       <height>30</height>
                                                       <width>10</width>
-                                                      <x>274</x>
+                                                      <x>284</x>
                                                       <y>389</y>
                                                     </constraint>
                                                     <sourceConnections>
@@ -562,7 +562,7 @@
                                                     <constraint>
                                                       <height>98</height>
                                                       <width>10</width>
-                                                      <x>274</x>
+                                                      <x>284</x>
                                                       <y>484</y>
                                                     </constraint>
                                                     <sourceConnections>
@@ -660,7 +660,7 @@
                                                           <constraint>
                                                             <height>46</height>
                                                             <width>10</width>
-                                                            <x>521</x>
+                                                            <x>566</x>
                                                             <y>526</y>
                                                           </constraint>
                                                           <sourceConnections>
@@ -710,7 +710,7 @@
                                                                 <constraint>
                                                                   <height>30</height>
                                                                   <width>10</width>
-                                                                  <x>730</x>
+                                                                  <x>817</x>
                                                                   <y>532</y>
                                                                 </constraint>
                                                                 <sourceConnections>
@@ -744,7 +744,7 @@
                                                               <name>delete(mno: String): void</name>
                                                               <direction>true</direction>
                                                               <order>10</order>
-                                                              <oldOrder>0</oldOrder>
+                                                              <oldOrder>10</oldOrder>
                                                             </net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
                                                           </sourceConnections>
                                                           <targetConnections>
@@ -770,7 +770,7 @@
                                                             <constraint>
                                                               <height>602</height>
                                                               <width>5</width>
-                                                              <x>526</x>
+                                                              <x>571</x>
                                                               <y>20</y>
                                                             </constraint>
                                                             <sourceConnections/>
@@ -797,8 +797,8 @@
                                                               </listeners>
                                                               <constraint>
                                                                 <height>-1</height>
-                                                                <width>216</width>
-                                                                <x>418</x>
+                                                                <width>255</width>
+                                                                <x>445</x>
                                                                 <y>20</y>
                                                               </constraint>
                                                               <sourceConnections/>
@@ -3349,7 +3349,7 @@
                                                   </listeners>
                                                   <constraint>
                                                     <height>-1</height>
-                                                    <width>268</width>
+                                                    <width>289</width>
                                                     <x>146</x>
                                                     <y>20</y>
                                                   </constraint>
@@ -5932,8 +5932,8 @@
                                 </listeners>
                                 <constraint>
                                   <height>-1</height>
-                                  <width>188</width>
-                                  <x>641</x>
+                                  <width>222</width>
+                                  <x>711</x>
                                   <y>20</y>
                                 </constraint>
                                 <sourceConnections/>

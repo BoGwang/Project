@@ -96,7 +96,7 @@
                 <constraint>
                   <height>85</height>
                   <width>10</width>
-                  <x>274</x>
+                  <x>281</x>
                   <y>99</y>
                 </constraint>
                 <sourceConnections>
@@ -146,7 +146,7 @@
                       <constraint>
                         <height>46</height>
                         <width>10</width>
-                        <x>521</x>
+                        <x>558</x>
                         <y>128</y>
                       </constraint>
                       <sourceConnections>
@@ -196,7 +196,7 @@
                             <constraint>
                               <height>30</height>
                               <width>10</width>
-                              <x>730</x>
+                              <x>800</x>
                               <y>134</y>
                             </constraint>
                             <sourceConnections>
@@ -240,7 +240,7 @@
                               <constraint>
                                 <height>204</height>
                                 <width>5</width>
-                                <x>735</x>
+                                <x>805</x>
                                 <y>20</y>
                               </constraint>
                               <sourceConnections/>
@@ -265,8 +265,8 @@
                                 </listeners>
                                 <constraint>
                                   <height>-1</height>
-                                  <width>188</width>
-                                  <x>641</x>
+                                  <width>213</width>
+                                  <x>699</x>
                                   <y>20</y>
                                 </constraint>
                                 <sourceConnections/>
@@ -2636,7 +2636,7 @@
                           <name>selectAll(): List&lt;Board&gt;</name>
                           <direction>true</direction>
                           <order>3</order>
-                          <oldOrder>0</oldOrder>
+                          <oldOrder>3</oldOrder>
                         </net.java.amateras.uml.sequencediagram.model.SyncMessageModel>
                       </sourceConnections>
                       <targetConnections>
@@ -2662,7 +2662,7 @@
                         <constraint>
                           <height>204</height>
                           <width>5</width>
-                          <x>526</x>
+                          <x>563</x>
                           <y>20</y>
                         </constraint>
                         <sourceConnections/>
@@ -2687,8 +2687,8 @@
                           </listeners>
                           <constraint>
                             <height>-1</height>
-                            <width>216</width>
-                            <x>418</x>
+                            <width>254</width>
+                            <x>437</x>
                             <y>20</y>
                           </constraint>
                           <sourceConnections/>
@@ -5084,7 +5084,7 @@
                   <constraint>
                     <height>204</height>
                     <width>5</width>
-                    <x>279</x>
+                    <x>286</x>
                     <y>20</y>
                   </constraint>
                   <sourceConnections/>
@@ -5109,7 +5109,7 @@
                     </listeners>
                     <constraint>
                       <height>-1</height>
-                      <width>268</width>
+                      <width>282</width>
                       <x>146</x>
                       <y>20</y>
                     </constraint>
